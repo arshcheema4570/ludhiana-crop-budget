@@ -11,6 +11,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - User-entered yield and market price with live per-acre and whole-field net-profit calculations.
 - Per-acre cost, break-even price, gross revenue, and net-profit calculations.
 - Farm-size totals for fertilizer and pesticide costs based on each per-acre rate.
+- Seed-count yield estimator for wheat and rice using farm area, plant density, seeds per plant, survival rate, and 1,000-seed weight.
 - Responsive offline chart comparing revenue, each expense category, and profit or loss.
 - Historical Punjab market-price trend chart for wheat, paddy/rice, maize, and potato.
 - Installable PWA with home-screen icons and an offline service-worker app shell.
@@ -40,6 +41,8 @@ Open the deployed website in a mobile browser. On Android Chrome, use **Install 
 The included crop, soil, weather, and price values are intended as **starting assumptions**, not official recommendations. Replace them with your own soil-lab report, local mandi quote, farm records, and advice from a qualified agricultural extension professional before making production or financial decisions.
 
 Net profit is calculated as **(yield per acre × market price) − total cost per acre**. The whole-field figure multiplies the per-acre profit by the entered acreage. Fertilizer and pesticide whole-farm totals are calculated as **per-acre rate × farm acres**.
+
+The seed-count estimator uses **square feet × plants per square foot × harvestable-plant rate × seeds per plant** to estimate total seeds, then converts that count to kilograms using the entered 1,000-seed weight. The displayed values are potential grain-count estimates, not guaranteed harvests. For better accuracy, count a representative field sample and weigh 1,000 seeds from the farmer’s own crop rather than relying on a reference value.
 
 The app is designed to work without a network connection. When network access is available, the optional live-data lookups may update the displayed mandi price, historical trend, and weather information; successful trend responses are cached on the device for later viewing. The calculator itself does not require an account or backend.
 
