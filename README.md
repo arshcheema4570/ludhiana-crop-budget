@@ -10,6 +10,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Crop presets for common rice–wheat heartland crops.
 - User-entered yield and market price with live per-acre and whole-field net-profit calculations.
 - Per-acre cost, break-even price, gross revenue, and net-profit calculations.
+- Farm-size totals for fertilizer and pesticide costs based on each per-acre rate.
 - Responsive offline chart comparing revenue, each expense category, and profit or loss.
 - Historical Punjab market-price trend chart for wheat, paddy/rice, maize, and potato.
 - Soil-health input guidance for pH, organic carbon, phosphorus, and potassium.
@@ -33,7 +34,7 @@ Then visit <http://localhost:8000>.
 
 The included crop, soil, weather, and price values are intended as **starting assumptions**, not official recommendations. Replace them with your own soil-lab report, local mandi quote, farm records, and advice from a qualified agricultural extension professional before making production or financial decisions.
 
-Net profit is calculated as **(yield per acre × market price) − total cost per acre**. The whole-field figure multiplies the per-acre profit by the entered acreage.
+Net profit is calculated as **(yield per acre × market price) − total cost per acre**. The whole-field figure multiplies the per-acre profit by the entered acreage. Fertilizer and pesticide whole-farm totals are calculated as **per-acre rate × farm acres**.
 
 The app is designed to work without a network connection. When network access is available, the optional live-data lookups may update the displayed mandi price, historical trend, and weather information; successful trend responses are cached on the device for later viewing. The calculator itself does not require an account or backend.
 
