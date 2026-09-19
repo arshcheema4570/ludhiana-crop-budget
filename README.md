@@ -13,6 +13,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Farm-size totals for fertilizer and pesticide costs based on each per-acre rate.
 - Responsive offline chart comparing revenue, each expense category, and profit or loss.
 - Historical Punjab market-price trend chart for wheat, paddy/rice, maize, and potato.
+- Installable PWA with home-screen icons and an offline service-worker app shell.
 - Soil-health input guidance for pH, organic carbon, phosphorus, and potassium.
 - Crop-rotation planner with nitrogen-balance suggestions.
 - Optional live mandi-price and weather data, with cached results when available.
@@ -29,6 +30,10 @@ python3 -m http.server 8000
 ```
 
 Then visit <http://localhost:8000>.
+
+## Install on a phone
+
+Open the deployed website in a mobile browser. On Android Chrome, use **Install app** or **Add to Home screen** from the browser menu. On iPhone Safari, use **Share → Add to Home Screen**. The service worker caches the app shell so the calculator remains available when the connection is weak or unavailable; live mandi and weather updates continue to use the app’s cached-data fallbacks.
 
 ## Data and assumptions
 
