@@ -10,6 +10,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Crop presets for common rice–wheat heartland crops.
 - User-entered yield and market price with live per-acre and whole-field net-profit calculations.
 - Per-acre cost, break-even price, gross revenue, and net-profit calculations.
+- Responsive offline chart comparing revenue, each expense category, and profit or loss.
 - Soil-health input guidance for pH, organic carbon, phosphorus, and potassium.
 - Crop-rotation planner with nitrogen-balance suggestions.
 - Optional live mandi-price and weather data, with cached results when available.
