@@ -17,6 +17,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Installable PWA with home-screen icons and an offline service-worker app shell.
 - WhatsApp share button that sends a concise crop-budget and yield estimate to family or advisors.
 - GPS-aware pre-sowing simulator comparing model profit, whole-farm return, water pressure, sowing readiness, and estimated harvest date.
+- Personalized YouTube learning topics refreshed on every app open from the farmer’s crop, location, irrigation, soil, and livestock answers.
 - Soil-health input guidance for pH, organic carbon, phosphorus, and potassium.
 - Crop-rotation planner with nitrogen-balance suggestions.
 - Optional live mandi-price and weather data, with cached results when available.
@@ -53,6 +54,10 @@ The top of the app now presents an eight-step setup for farmers who want a simpl
 The simulator compares wheat, rice/paddy, maize, and potato using the entered farm size and planning assumptions. It uses GPS, when permitted, to request a seven-day forecast for the farm’s actual coordinates; otherwise it falls back to Ludhiana. The comparison flags whether the selected sowing date is within a broad Punjab crop window, estimates a harvest date from a crop duration, and turns forecast rain into an irrigation or field-work caution. Because weather cannot reliably be forecast months ahead, the harvest date is a planning target: recheck the local forecast and official warnings in the week before harvest, and arrange drying, storage, transport, and insurance in advance.
 
 The regional crop-window and water-saving guidance is informed by Punjab Agricultural University’s [Rabi Package of Practices](https://pau.edu/content/ccil/pf/pp_rabi.pdf) and [Kharif Package of Practices](https://pau.edu/content/ccil/pf/pp_kharif.pdf). The tool remains an estimate; farmers should confirm decisions with their soil test, field conditions, local PAU/KVK advice, and official weather alerts.
+
+## Personalized learning
+
+The app creates four current YouTube search topics whenever it opens: crop production, irrigation and rainfall planning, soil and input management, and cattle/crop-leftover use. Search terms include the selected crop, the location fallback or GPS coordinates, irrigation system, soil-test status, livestock count, and Punjabi/English language preference. The links intentionally open live YouTube search results rather than embedding a fixed influencer video, so the farmer can review the channel, date, local relevance, and safety of each result. Official PAU/KVK, veterinary, and government guidance should take priority over informal videos.
 
 ## Data and assumptions
 
