@@ -15,6 +15,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Responsive offline chart comparing revenue, each expense category, and profit or loss.
 - Historical Punjab market-price trend chart for wheat, paddy/rice, maize, and potato.
 - Installable PWA with home-screen icons and an offline service-worker app shell.
+- WhatsApp share button that sends a concise crop-budget and yield estimate to family or advisors.
 - Soil-health input guidance for pH, organic carbon, phosphorus, and potassium.
 - Crop-rotation planner with nitrogen-balance suggestions.
 - Optional live mandi-price and weather data, with cached results when available.
@@ -35,6 +36,8 @@ Then visit <http://localhost:8000>.
 ## Install on a phone
 
 Open the deployed website in a mobile browser. On Android Chrome, use **Install app** or **Add to Home screen** from the browser menu. On iPhone Safari, use **Share → Add to Home Screen**. The service worker caches the app shell so the calculator remains available when the connection is weak or unavailable; live mandi and weather updates continue to use the app’s cached-data fallbacks.
+
+To share an estimate, enter the crop-plan values and tap **Share on WhatsApp**. The app opens WhatsApp with the current crop, acreage, yield, market price, per-acre profit, whole-farm profit, and any seed-count estimate already calculated. The farmer reviews the message and chooses the family member or advisor before sending.
 
 ## Data and assumptions
 
