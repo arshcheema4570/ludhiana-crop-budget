@@ -40,6 +40,10 @@ Open the deployed website in a mobile browser. On Android Chrome, use **Install 
 
 To share an estimate, enter the crop-plan values and tap **Share on WhatsApp**. The app opens WhatsApp with the current crop, acreage, yield, market price, per-acre profit, whole-farm profit, and any seed-count estimate already calculated. The farmer reviews the message and chooses the family member or advisor before sending.
 
+## Guided setup flow
+
+The top of the app now presents an eight-step setup for farmers who want a simpler starting point: **location**, **soil test**, **crop choice**, **farm size and irrigation**, **fertilizer and pesticide approach**, **harvest and selling costs**, **result check**, and **recommendation**. The guided answers sync into the detailed calculator, crop comparison, weather panel, soil guide, and WhatsApp report so the farmer does not need to enter the same information twice.
+
 ## Pre-sowing planning
 
 The simulator compares wheat, rice/paddy, maize, and potato using the entered farm size and planning assumptions. It uses GPS, when permitted, to request a seven-day forecast for the farm’s actual coordinates; otherwise it falls back to Ludhiana. The comparison flags whether the selected sowing date is within a broad Punjab crop window, estimates a harvest date from a crop duration, and turns forecast rain into an irrigation or field-work caution. Because weather cannot reliably be forecast months ahead, the harvest date is a planning target: recheck the local forecast and official warnings in the week before harvest, and arrange drying, storage, transport, and insurance in advance.
