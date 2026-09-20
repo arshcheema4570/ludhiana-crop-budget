@@ -16,6 +16,7 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Historical Punjab market-price trend chart for wheat, paddy/rice, maize, and potato.
 - Installable PWA with home-screen icons and an offline service-worker app shell.
 - WhatsApp share button that sends a concise crop-budget and yield estimate to family or advisors.
+- GPS-aware pre-sowing simulator comparing model profit, whole-farm return, water pressure, sowing readiness, and estimated harvest date.
 - Soil-health input guidance for pH, organic carbon, phosphorus, and potassium.
 - Crop-rotation planner with nitrogen-balance suggestions.
 - Optional live mandi-price and weather data, with cached results when available.
@@ -38,6 +39,12 @@ Then visit <http://localhost:8000>.
 Open the deployed website in a mobile browser. On Android Chrome, use **Install app** or **Add to Home screen** from the browser menu. On iPhone Safari, use **Share → Add to Home Screen**. The service worker caches the app shell so the calculator remains available when the connection is weak or unavailable; live mandi and weather updates continue to use the app’s cached-data fallbacks.
 
 To share an estimate, enter the crop-plan values and tap **Share on WhatsApp**. The app opens WhatsApp with the current crop, acreage, yield, market price, per-acre profit, whole-farm profit, and any seed-count estimate already calculated. The farmer reviews the message and chooses the family member or advisor before sending.
+
+## Pre-sowing planning
+
+The simulator compares wheat, rice/paddy, maize, and potato using the entered farm size and planning assumptions. It uses GPS, when permitted, to request a seven-day forecast for the farm’s actual coordinates; otherwise it falls back to Ludhiana. The comparison flags whether the selected sowing date is within a broad Punjab crop window, estimates a harvest date from a crop duration, and turns forecast rain into an irrigation or field-work caution. Because weather cannot reliably be forecast months ahead, the harvest date is a planning target: recheck the local forecast and official warnings in the week before harvest, and arrange drying, storage, transport, and insurance in advance.
+
+The regional crop-window and water-saving guidance is informed by Punjab Agricultural University’s [Rabi Package of Practices](https://pau.edu/content/ccil/pf/pp_rabi.pdf) and [Kharif Package of Practices](https://pau.edu/content/ccil/pf/pp_kharif.pdf). The tool remains an estimate; farmers should confirm decisions with their soil test, field conditions, local PAU/KVK advice, and official weather alerts.
 
 ## Data and assumptions
 
