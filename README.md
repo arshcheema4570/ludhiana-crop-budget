@@ -40,6 +40,10 @@ Open the deployed website in a mobile browser. On Android Chrome, use **Install 
 
 To share an estimate, enter the crop-plan values and tap **Share on WhatsApp**. The app opens WhatsApp with the current crop, acreage, yield, market price, per-acre profit, whole-farm profit, and any seed-count estimate already calculated. The farmer reviews the message and chooses the family member or advisor before sending.
 
+## Whole-farm livestock and residue planning
+
+The setup also asks whether the farmer keeps cattle or buffalo and how many. Based on the selected crop, area, and leftover plan, the app estimates total residue, usable residue after broad field/drying/storage losses, approximate cattle-feed days, and possible sale value. Farmers can compare **feed**, **sale**, **soil return/mulch**, or a split plan. The tool does not treat residue value as guaranteed profit: buyers, moisture, transport, weighing, and local prices must be confirmed. It also warns against burning and unsafe feed; moldy, wet, contaminated, or unsuitable residue must not be fed, and ration balance should be checked with a veterinary or livestock adviser.
+
 ## Guided setup flow
 
 The top of the app now presents an eight-step setup for farmers who want a simpler starting point: **location**, **soil test**, **crop choice**, **farm size and irrigation**, **fertilizer and pesticide approach**, **harvest and selling costs**, **result check**, and **recommendation**. The guided answers sync into the detailed calculator, crop comparison, weather panel, soil guide, and WhatsApp report so the farmer does not need to enter the same information twice.
