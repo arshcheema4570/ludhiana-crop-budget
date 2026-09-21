@@ -42,8 +42,46 @@
       <div><b data-en="Weather watch" data-pa="ਮੌਸਮ ਧਿਆਨ">Weather watch</b><span data-en="Hot summers, monsoon rain in July–August, and a cool winter. Rain or heat around harvest can change your final result." data-pa="ਗਰਮੀਆਂ ਵਿੱਚ ਗਰਮੀ, ਜੁਲਾਈ–ਅਗਸਤ ਵਿੱਚ ਮਾਨਸੂਨੀ ਮੀਂਹ ਅਤੇ ਠੰਢੀ ਸਰਦੀ। ਕਟਾਈ ਵੇਲੇ ਮੀਂਹ ਜਾਂ ਗਰਮੀ ਨਤੀਜਾ ਬਦਲ ਸਕਦੀ ਹੈ।">Hot summers, monsoon rain in July–August, and a cool winter. Rain or heat around harvest can change your final result.</span></div>
     </div>
   </section>
+  <style>
+.agent-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px;margin:0 0 22px;box-shadow:var(--shadow)}
+.agent-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;flex-wrap:wrap}
+.agent-head h2{font-size:18px;margin:0 0 4px}
+.agent-head p{font-size:12px;color:var(--muted);margin:0;max-width:720px;line-height:1.6}
+.agent-bar{display:flex;gap:10px;margin-top:16px}
+.agent-bar input{flex:1;padding:12px 14px;border-radius:11px;border:1px solid var(--line);font:inherit;color:var(--ink);background:#fffefa;min-width:0}
+.agent-bar input:focus{outline:none;border-color:var(--ink-2);box-shadow:0 0 0 3px rgba(40,83,60,.1)}
+.agent-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.agent-chip{border:1px solid var(--line);background:#edf3e9;color:var(--ink-2);border-radius:999px;padding:8px 12px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.agent-chip:hover{background:#dceadf}
+.agent-result{margin-top:14px;font-size:13px;line-height:1.7}
+.agent-ok{background:#edf3e9;border-radius:12px;padding:12px 14px}
+.agent-miss{background:#fff7df;border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:12px 14px}
+.agent-net{margin-top:8px;font-size:14px}
+.agent-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+@media(max-width:520px){.agent-bar{flex-direction:column}.agent-bar .btn{width:100%}}
+</style>
+<section class="agent-card" id="agentCard">
+  <div class="agent-head">
+    <div>
+      <h2 data-en="Kheti Agent" data-pa="ਖੇਤੀ ਏਜੰਟ">Kheti Agent</h2>
+      <p data-en="Type like you speak — I fill the budget below. A named amount replaces that cost; bags get added on top." data-pa="ਜਿਵੇਂ ਬੋਲਦੇ ਹੋ, ਉਵੇਂ ਲਿਖੋ — ਮੈਂ ਹੇਠਾਂ ਬਜਟ ਭਰ ਦਿੰਦਾ ਹਾਂ। ਸਿੱਧੀ ਰਕਮ ਉਹ ਲਾਗਤ ਬਦਲ ਦਿੰਦੀ ਹੈ; ਬੋਰੀਆਂ ਉੱਤੇ ਜੁੜਦੀਆਂ ਹਨ।">Type like you speak — I fill the budget below. A named amount replaces that cost; bags get added on top.</p>
+    </div>
+    <span class="soil-badge" data-en="v1 · works offline" data-pa="v1 · ਆਫਲਾਈਨ ਚੱਲਦਾ ਹੈ">v1 · works offline</span>
+  </div>
+  <div class="agent-bar">
+    <input id="agentInput" type="text" autocomplete="off" enterkeyhint="go">
+    <button id="agentGo" class="btn primary" data-en="Fill budget" data-pa="ਬਜਟ ਭਰੋ">Fill budget</button>
+  </div>
+  <div class="agent-chips">
+    <button class="agent-chip" data-en="2 acre wheat" data-pa="2 ਏਕੜ ਕਣਕ" data-cmd-en="2 acre wheat" data-cmd-pa="2 ਏਕੜ ਕਣਕ">2 acre wheat</button>
+    <button class="agent-chip" data-en="5 acre paddy, DAP 2 bags" data-pa="5 ਏਕੜ ਝੋਨਾ, DAP 2 ਬੋਰੀਆਂ" data-cmd-en="5 acre paddy, DAP 2 bags" data-cmd-pa="5 ਏਕੜ ਝੋਨਾ, DAP 2 ਬੋਰੀਆਂ">5 acre paddy, DAP 2 bags</button>
+    <button class="agent-chip" data-en="3 acre maize, seed 2800" data-pa="3 ਏਕੜ ਮੱਕੀ, ਬੀਜ 2800" data-cmd-en="3 acre maize, seed 2800" data-cmd-pa="3 ਏਕੜ ਮੱਕੀ, ਬੀਜ 2800">3 acre maize, seed 2800</button>
+  </div>
+  <div id="agentResult" class="agent-result" aria-live="polite"></div>
+</section>
+
   <section class="guided-card" id="guidedSetup">
-    <div class="guided-top"><div><h2 data-en="Plan your crop step by step" data-pa="ਆਪਣੀ ਫ਼ਸਲ ਦਾ ਕਦਮ-ਦਰ-ਕਦਮ ਪਲਾਨ ਬਣਾਓ">Plan your crop step by step</h2><p data-en="Answer a few simple questions before sowing. We will connect your location, soil, crop, water, inputs, costs, and harvest estimate into one recommendation." data-pa="ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਸੌਖੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿਓ। ਅਸੀਂ ਤੁਹਾਡੀ ਥਾਂ, ਮਿੱਟੀ, ਫ਼ਸਲ, ਪਾਣੀ, ਇਨਪੁੱਟ, ਲਾਗਤ ਅਤੇ ਪੈਦਾਵਾਰ ਨੂੰ ਇੱਕ ਸਿਫ਼ਾਰਸ਼ ਨਾਲ ਜੋੜਾਂਗੇ।">Answer a few simple questions before sowing. We will connect your location, soil, crop, water, inputs, costs, and harvest estimate into one recommendation.</p></div><span class="soil-badge" data-en="9 simple steps" data-pa="8 ਸੌਖੇ ਕਦਮ">8 simple steps</span></div>
+    <div class="guided-top"><div><h2 data-en="Plan your crop step by step" data-pa="ਆਪਣੀ ਫ਼ਸਲ ਦਾ ਕਦਮ-ਦਰ-ਕਦਮ ਪਲਾਨ ਬਣਾਓ">Plan your crop step by step</h2><p data-en="Answer a few simple questions before sowing. We will connect your location, soil, crop, water, inputs, costs, and harvest estimate into one recommendation." data-pa="ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਸੌਖੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿਓ। ਅਸੀਂ ਤੁਹਾਡੀ ਥਾਂ, ਮਿੱਟੀ, ਫ਼ਸਲ, ਪਾਣੀ, ਇਨਪੁੱਟ, ਲਾਗਤ ਅਤੇ ਪੈਦਾਵਾਰ ਨੂੰ ਇੱਕ ਸਿਫ਼ਾਰਸ਼ ਨਾਲ ਜੋੜਾਂਗੇ।">Answer a few simple questions before sowing. We will connect your location, soil, crop, water, inputs, costs, and harvest estimate into one recommendation.</p></div><span class="soil-badge" data-en="9 simple steps" data-pa="9 ਸੌਖੇ ਕਦਮ">9 simple steps</span></div>
     <div class="guided-progress" aria-label="Setup progress"><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="guided-step active" data-step="0"><h3 data-en="1. Your location" data-pa="1. ਤੁਹਾਡੀ ਥਾਂ">1. Your location</h3><p data-en="Location makes the weather and irrigation advice local to your field." data-pa="ਥਾਂ ਦੀ ਜਾਣਕਾਰੀ ਮੌਸਮ ਅਤੇ ਸਿੰਚਾਈ ਸਲਾਹ ਨੂੰ ਤੁਹਾਡੇ ਖੇਤ ਲਈ ਸਥਾਨਕ ਬਣਾਉਂਦੀ ਹੈ।">Location makes the weather and irrigation advice local to your field.</p><div class="guided-location"><button onclick="useFarmLocation()" data-en="Use precise GPS" data-pa="ਸਹੀ GPS ਵਰਤੋ">Use precise GPS</button><span id="guidedLocationStatus" data-en="Fallback: Ludhiana, Punjab" data-pa="ਸੰਦਰਭ: ਲੁਧਿਆਣਾ, ਪੰਜਾਬ">Fallback: Ludhiana, Punjab</span></div></div>
     <div class="guided-step" data-step="1"><h3 data-en="2. Soil test" data-pa="2. ਮਿੱਟੀ ਜਾਂਚ">2. Soil test</h3><p data-en="Enter values from your lab report, or leave them blank and we will remind you to test before fertilizer decisions." data-pa="ਆਪਣੀ ਲੈਬ ਰਿਪੋਰਟ ਦੇ ਅੰਕ ਭਰੋ, ਜਾਂ ਖਾਲੀ ਛੱਡੋ; ਅਸੀਂ ਖਾਦ ਦੇ ਫੈਸਲੇ ਤੋਂ ਪਹਿਲਾਂ ਜਾਂਚ ਦੀ ਯਾਦ ਦਿਵਾਂਗੇ।">Enter values from your lab report, or leave them blank and we will remind you to test before fertilizer decisions.</p><div class="guided-grid"><div class="guided-field"><label for="guidedPh" data-en="Soil pH" data-pa="ਮਿੱਟੀ ਦਾ pH">Soil pH</label><input id="guidedPh" type="number" step="0.1" placeholder="e.g. 7.8"></div><div class="guided-field"><label for="guidedOc" data-en="Organic carbon %" data-pa="ਜੈਵਿਕ ਕਾਰਬਨ %">Organic carbon %</label><input id="guidedOc" type="number" step="0.01" placeholder="e.g. 0.65"></div><div class="guided-field"><label for="guidedP" data-en="Available P (mg/kg)" data-pa="ਉਪਲਬਧ P (mg/kg)">Available P (mg/kg)</label><input id="guidedP" type="number" step="1" placeholder="e.g. 18"></div><div class="guided-field"><label for="guidedK" data-en="Available K (mg/kg)" data-pa="ਉਪਲਬਧ K (mg/kg)">Available K (mg/kg)</label><input id="guidedK" type="number" step="1" placeholder="e.g. 160"></div></div><div class="guided-help" data-en="If you do not have a report, ask a soil lab or local PAU/KVK office. Do not increase fertilizer only because a crop looks pale." data-pa="ਜੇ ਰਿਪੋਰਟ ਨਹੀਂ ਹੈ ਤਾਂ ਮਿੱਟੀ ਲੈਬ ਜਾਂ ਸਥਾਨਕ PAU/KVK ਦਫ਼ਤਰ ਨਾਲ ਪੁੱਛੋ। ਸਿਰਫ਼ ਫ਼ਸਲ ਪੀਲੀ ਲੱਗਣ ਕਰਕੇ ਖਾਦ ਨਾ ਵਧਾਓ।">If you do not have a report, ask a soil lab or local PAU/KVK office. Do not increase fertilizer only because a crop looks pale.</div></div>
@@ -160,10 +198,10 @@ const labels={en:{seed:'Seed',fert:'Fertilizer',chem:'Pesticides',fuel:'Fuel & r
 function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n)}
 function num(id){return Math.max(0,parseFloat(document.getElementById(id).value)||0)}
 function renderProfitChart(costs,revenue,ret){const rows=[['Revenue',revenue,'revenue'],...Object.entries(costs).map(([key,val])=>[labels[lang][key],val,'expense']),[ret>=0?(lang==='en'?'Net profit':'ਸ਼ੁੱਧ ਮੁਨਾਫ਼ਾ'):(lang==='en'?'Net loss':'ਸ਼ੁੱਧ ਘਾਟਾ'),Math.abs(ret),ret>=0?'profit':'loss']];const scale=Math.max(1,...rows.map(row=>row[1]));document.getElementById('profitChart').innerHTML=rows.map(([label,value,type])=>`<div class="chart-row"><span class="chart-label">${label}</span><div class="chart-track"><div class="chart-bar ${type}" style="width:${Math.max(2,value/scale*100)}%"></div></div><span class="chart-value">${type==='loss'?'−':''}${money(value)}</span></div>`).join('')}
-	function calculate(){const acres=num('acres'), y=num('yield'), price=num('price'); const costs={seed:num('seed'),fert:num('fert'),chem:num('chem'),fuel:num('fuel'),other:num('other'),fixed:num('fixed')}; const total=Object.values(costs).reduce((a,b)=>a+b,0), revenue=y*price, ret=revenue-total, breakEven=y?total/y:0, coverage=total?Math.round(revenue/total*100):0, fertilizerTotal=costs.fert*acres, pesticideTotal=costs.chem*acres; document.getElementById('fertTotal').textContent=money(fertilizerTotal); document.getElementById('chemTotal').textContent=money(pesticideTotal); document.getElementById('inputCostTotal').textContent=money(fertilizerTotal+pesticideTotal); document.getElementById('breakEven').textContent=money(breakEven); document.getElementById('costAcre').textContent=money(total); document.getElementById('revenueAcre').textContent=money(revenue); document.getElementById('returnAcre').textContent=(ret<0?'−':'')+money(Math.abs(ret)); document.getElementById('returnTotal').textContent=(ret*acres<0?'−':'')+money(Math.abs(ret*acres)); document.getElementById('returnAcre').className='metric '+(ret>=0?'positive':'negative'); document.getElementById('returnTotal').className='metric '+(ret>=0?'positive':'negative'); document.getElementById('coverage').textContent=coverage+'%'; document.getElementById('bar').style.width=Math.min(100,Math.max(0,coverage))+'%'; const status=document.getElementById('status'); status.textContent=ret>=0?(lang==='en'?'Above break-even':'ਬਰਾਬਰੀ ਤੋਂ ਉੱਪਰ'):(lang==='en'?'Below break-even':'ਬਰਾਬਰੀ ਤੋਂ ਹੇਠਾਂ'); status.style.background=ret>=0?'rgba(134,207,128,.18)':'rgba(229,168,59,.16)'; status.style.color=ret>=0?'#a9e2a5':'#f8d891'; document.getElementById('tip').textContent=ret>=0?(lang==='en'?'Tip: You are above break-even at this sale price. Try a lower price to stress-test the plan.':'ਸੁਝਾਅ: ਇਸ ਵਿਕਰੀ ਕੀਮਤ ਤੇ ਤੁਸੀਂ ਬਰਾਬਰੀ ਤੋਂ ਉੱਪਰ ਹੋ। ਯੋਜਨਾ ਨੂੰ ਪਰਖਣ ਲਈ ਘੱਟ ਕੀਮਤ ਵੀ ਅਜ਼ਮਾਓ।'):(lang==='en'?'Tip: Your current plan needs a sale price above break-even to make money.':'ਸੁਝਾਅ: ਮੁਨਾਫ਼ੇ ਲਈ ਤੁਹਾਡੀ ਵਿਕਰੀ ਕੀਮਤ ਬਰਾਬਰੀ ਵਾਲੀ ਕੀਮਤ ਤੋਂ ਉੱਪਰ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।'); renderProfitChart(costs,revenue,ret); document.getElementById('breakdown').innerHTML=Object.entries(costs).map(([key,val])=>`<div class="cost-row"><span>${labels[lang][key]}</span><span>${money(val)}</span></div>`).join('')+`<div class="cost-row"><span>${lang==='en'?'Total cost':'ਕੁੱਲ ਲਾਗਤ'}</span><span>${money(total)}</span></div><div class="cost-row"><span>${lang==='en'?'Revenue / acre':'ਆਮਦਨ / ਏਕੜ'}</span><span>${money(revenue)}</span></div><div class="cost-row"><span>${lang==='en'?'Net profit / acre':'ਸ਼ੁੱਧ ਮੁਨਾਫ਼ਾ / ਏਕੜ'}</span><span>${ret<0?'−':''}${money(Math.abs(ret))}</span></div>`; localStorage.setItem('cropBudget',JSON.stringify(Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]))));}
+	function calculate(){const acres=num('acres'), y=num('yield'), price=num('price'); const costs={seed:num('seed'),fert:num('fert'),chem:num('chem'),fuel:num('fuel'),other:num('other'),fixed:num('fixed')}; const total=Object.values(costs).reduce((a,b)=>a+b,0), revenue=y*price, ret=revenue-total, breakEven=y?total/y:0, coverage=total?Math.round(revenue/total*100):0, fertilizerTotal=costs.fert*acres, pesticideTotal=costs.chem*acres; document.getElementById('fertTotal').textContent=money(fertilizerTotal); document.getElementById('chemTotal').textContent=money(pesticideTotal); document.getElementById('inputCostTotal').textContent=money(fertilizerTotal+pesticideTotal); document.getElementById('breakEven').textContent=money(breakEven); document.getElementById('costAcre').textContent=money(total); document.getElementById('revenueAcre').textContent=money(revenue); document.getElementById('returnAcre').textContent=(ret<0?'−':'')+money(Math.abs(ret)); document.getElementById('returnTotal').textContent=(ret*acres<0?'−':'')+money(Math.abs(ret*acres)); document.getElementById('returnAcre').className='metric '+(ret>=0?'positive':'negative'); document.getElementById('returnTotal').className='metric '+(ret>=0?'positive':'negative'); document.getElementById('coverage').textContent=coverage+'%'; document.getElementById('bar').style.width=Math.min(100,Math.max(0,coverage))+'%'; const noInput=!document.getElementById('acres').value&&!document.getElementById('yield').value&&!document.getElementById('price').value;const status=document.getElementById('status'); status.textContent=noInput?(lang==='en'?'Enter your numbers':'ਆਪਣੇ ਅੰਕ ਭਰੋ'):ret>=0?(lang==='en'?'Above break-even':'ਬਰਾਬਰੀ ਤੋਂ ਉੱਪਰ'):(lang==='en'?'Below break-even':'ਬਰਾਬਰੀ ਤੋਂ ਹੇਠਾਂ'); status.style.background=ret>=0?'rgba(134,207,128,.18)':'rgba(229,168,59,.16)'; status.style.color=ret>=0?'#a9e2a5':'#f8d891'; document.getElementById('tip').textContent=noInput?(lang==='en'?'Tip: fill acres, yield and sale price to see your break-even and profit.':'ਸੁਝਾਅ: ਬਰਾਬਰੀ ਕੀਮਤ ਅਤੇ ਮੁਨਾਫ਼ਾ ਵੇਖਣ ਲਈ ਏਕੜ, ਝਾੜ ਅਤੇ ਵਿਕਰੀ ਭਾਅ ਭਰੋ।'):ret>=0?(lang==='en'?'Tip: You are above break-even at this sale price. Try a lower price to stress-test the plan.':'ਸੁਝਾਅ: ਇਸ ਵਿਕਰੀ ਕੀਮਤ ਤੇ ਤੁਸੀਂ ਬਰਾਬਰੀ ਤੋਂ ਉੱਪਰ ਹੋ। ਯੋਜਨਾ ਨੂੰ ਪਰਖਣ ਲਈ ਘੱਟ ਕੀਮਤ ਵੀ ਅਜ਼ਮਾਓ।'):(lang==='en'?'Tip: Your current plan needs a sale price above break-even to make money.':'ਸੁਝਾਅ: ਮੁਨਾਫ਼ੇ ਲਈ ਤੁਹਾਡੀ ਵਿਕਰੀ ਕੀਮਤ ਬਰਾਬਰੀ ਵਾਲੀ ਕੀਮਤ ਤੋਂ ਉੱਪਰ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।'); renderProfitChart(costs,revenue,ret); document.getElementById('breakdown').innerHTML=Object.entries(costs).map(([key,val])=>`<div class="cost-row"><span>${labels[lang][key]}</span><span>${money(val)}</span></div>`).join('')+`<div class="cost-row"><span>${lang==='en'?'Total cost':'ਕੁੱਲ ਲਾਗਤ'}</span><span>${money(total)}</span></div><div class="cost-row"><span>${lang==='en'?'Revenue / acre':'ਆਮਦਨ / ਏਕੜ'}</span><span>${money(revenue)}</span></div><div class="cost-row"><span>${lang==='en'?'Net profit / acre':'ਸ਼ੁੱਧ ਮੁਨਾਫ਼ਾ / ਏਕੜ'}</span><span>${ret<0?'−':''}${money(Math.abs(ret))}</span></div>`; localStorage.setItem('cropBudget',JSON.stringify(Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]))));}
 function setLanguage(next){lang=next;document.documentElement.lang=next==='pa'?'pa':'en';document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[next]);document.getElementById('enBtn').classList.toggle('active',next==='en');document.getElementById('paBtn').classList.toggle('active',next==='pa');calculate();updateSoilGuide();renderRotation();renderCropComparison();renderLearningResources();if(guidedStep>=6)renderGuidedRecommendation();if(window.lastWeather)irrigationAdvice(window.lastWeather)}
 	const cropPresets={wheat:{yield:20.9,price:2275,seed:1800,fert:6500,chem:2200,fuel:3500,other:2500,fixed:12000},paddy:{yield:27,price:2320,seed:2200,fert:7200,chem:3200,fuel:5200,other:3200,fixed:13500},maize:{yield:24,price:2200,seed:2800,fert:6200,chem:2600,fuel:3600,other:2400,fixed:11000},potato:{yield:90,price:1200,seed:24000,fert:8500,chem:7500,fuel:6200,other:4500,fixed:15000},other:{yield:20,price:2200,seed:3000,fert:6500,chem:3500,fuel:4000,other:3000,fixed:12000}};
-	function applyCropPreset(){const crop=document.getElementById('crop').value.toLowerCase();const key=crop.includes('paddy')||crop.includes('rice')?'paddy':crop.includes('maize')?'maize':crop.includes('potato')?'potato':crop.includes('other')?'other':'wheat';const values=cropPresets[key];Object.entries(values).forEach(([id,value])=>document.getElementById(id).value=value);calculate()}
+	function applyCropPreset(){const crop=document.getElementById('crop').value.toLowerCase();const key=crop.includes('paddy')||crop.includes('rice')?'paddy':crop.includes('maize')?'maize':crop.includes('potato')?'potato':crop.includes('other')?'other':'wheat';const values=cropPresets[key];Object.entries(values).forEach(([id,value])=>document.getElementById(id).value=Math.round(value*100)/100);calculate()}
 	function shareWhatsApp(){const crop=document.getElementById('crop').value,acres=num('acres'),residueSummary=document.getElementById('residueTonnes')?.textContent||'',y=num('yield'),price=num('price'),costs={seed:num('seed'),fert:num('fert'),chem:num('chem'),fuel:num('fuel'),other:num('other'),fixed:num('fixed')},total=Object.values(costs).reduce((a,b)=>a+b,0),revenue=y*price,profit=(revenue-total)*acres,perAcre=revenue-total,seedEstimate=document.getElementById('seedHarvestKg')?.textContent||'';let message;if(lang==='pa'){message=`ਖੇਤੀ ਨੰਬਰ — ਫ਼ਸਲ ਬਜਟ\nਫ਼ਸਲ: ${crop}\nਖੇਤ: ${acres} ਏਕੜ\nਪੈਦਾਵਾਰ: ${y} ਕੁਇੰਟਲ/ਏਕੜ\nਮੰਡੀ ਭਾਅ: ${money(price)}/ਕੁਇੰਟਲ\nਕੁੱਲ ਲਾਗਤ: ${money(total)}/ਏਕੜ\nਆਮਦਨ: ${money(revenue)}/ਏਕੜ\nਸ਼ੁੱਧ ਮੁਨਾਫ਼ਾ: ${money(perAcre)}/ਏਕੜ\nਪੂਰੇ ਖੇਤ ਦਾ ਮੁਨਾਫ਼ਾ: ${money(profit)}${seedEstimate?'\nਬੀਜ ਗਿਣਤੀ ਅੰਦਾਜ਼ਾ: '+seedEstimate:''}${residueSummary?'\nਫ਼ਸਲ ਦੀ ਰਹਿੰਦ-ਖੂੰਹਦ: '+residueSummary:''}\n\nਇਹ ਯੋਜਨਾ ਲਈ ਅੰਦਾਜ਼ਾ ਹੈ। ਵੇਚਣ ਤੋਂ ਪਹਿਲਾਂ ਸਥਾਨਕ ਮੰਡੀ ਭਾਅ ਅਤੇ ਖਰਚੇ ਜਾਂਚੋ।`;}else{message=`Kheti Numbers — Crop Budget\nCrop: ${crop}\nFarm: ${acres} acres\nYield: ${y} quintals/acre\nMarket price: ${money(price)}/quintal\nTotal cost: ${money(total)}/acre\nRevenue: ${money(revenue)}/acre\nNet profit: ${money(perAcre)}/acre\nWhole-farm profit: ${money(profit)}${seedEstimate?'\nSeed-count estimate: '+seedEstimate:''}${residueSummary?'\nCrop leftover: '+residueSummary:''}\n\nPlanning estimate only. Verify local mandi price and actual costs before selling.`;}window.open('https://wa.me/?text='+encodeURIComponent(message),'_blank','noopener,noreferrer')}
 function exportReport(){const crop=document.getElementById('crop').value, acres=num('acres'), y=num('yield'), price=num('price'), costs={seed:num('seed'),fert:num('fert'),chem:num('chem'),fuel:num('fuel'),other:num('other'),fixed:num('fixed')}, total=Object.values(costs).reduce((a,b)=>a+b,0), revenue=y*price, ret=revenue-total, breakeven=y?total/y:0;const val=id=>document.getElementById(id)?.textContent||'—';const soilRows=[['pH',document.getElementById('soilPh').value||'—'],['Organic carbon %',document.getElementById('soilOc').value||'—'],['Available P mg/kg',document.getElementById('soilP').value||'—'],['Available K mg/kg',document.getElementById('soilK').value||'—']];const reportLang=lang==='pa';const title=reportLang?'ਫ਼ਸਲ ਬਜਟ ਅਤੇ ਖਾਦ ਰਿਪੋਰਟ':'Crop Budget & Fertilizer Report';const subtitle=reportLang?'ਲੁਧਿਆਣਾ ਜ਼ਿਲ੍ਹਾ · ਤਿਆਰ ਕੀਤਾ ਗਿਆ '+new Date().toLocaleString('en-IN'):'Ludhiana district · Generated '+new Date().toLocaleString('en-IN');const moneyRows=Object.entries(costs).map(([key,v])=>`<tr><td>${labels[lang][key]}</td><td>${money(v)}</td></tr>`).join('');const w=window.open('','_blank','width=900,height=800');if(!w){window.print();return}w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{size:A4;margin:16mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#173d2b;margin:0;font-size:12px}h1{font-family:Georgia,serif;font-size:28px;margin:0 0 5px}h2{font-size:15px;border-bottom:2px solid #e5a83b;padding-bottom:6px;margin:22px 0 9px}.muted{color:#68746c}.header{display:flex;justify-content:space-between;border-bottom:1px solid #d9e1d5;padding-bottom:13px}.badge{background:#edf3e9;padding:7px 10px;border-radius:20px;font-weight:bold;height:max-content}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{background:#edf3e9;border-radius:8px;padding:10px}.stat b{display:block;font-size:16px;margin-top:4px}.stat small{color:#68746c}table{width:100%;border-collapse:collapse}td{padding:7px 5px;border-bottom:1px solid #e1e5df}td:last-child{text-align:right;font-variant-numeric:tabular-nums}.highlight{background:#173d2b;color:#fff;border-radius:10px;padding:14px;margin-top:10px}.highlight b{color:#f3c861;font-size:23px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}.callout{background:#fff7df;border-left:3px solid #e5a83b;padding:11px;border-radius:0 8px 8px 0}.footer{margin-top:25px;padding-top:10px;border-top:1px solid #ddd;color:#68746c;font-size:10px;line-height:1.5}@media print{button{display:none}}</style></head><body><div class="header"><div><h1>${title}</h1><div class="muted">${subtitle}</div></div><div class="badge">Kheti Numbers</div></div><h2>${reportLang?'ਫ਼ਸਲ ਅਤੇ ਬਜਟ':'Crop & budget'}</h2><p><b>${crop}</b> · ${acres} acres · ${y} quintals/acre · ${money(price)}/quintal</p><div class="grid"><div class="stat"><small>${reportLang?'ਕੁੱਲ ਲਾਗਤ / ਏਕੜ':'Total cost / acre'}</small><b>${money(total)}</b></div><div class="stat"><small>${reportLang?'ਅੰਦਾਜ਼ੀ ਆਮਦਨ / ਏਕੜ':'Revenue / acre'}</small><b>${money(revenue)}</b></div><div class="stat"><small>${reportLang?'ਬਰਾਬਰੀ ਕੀਮਤ':'Break-even'}</small><b>${money(breakeven)}</b></div><div class="stat"><small>${reportLang?'ਨਤੀਜਾ / ਏਕੜ':'Return / acre'}</small><b>${money(ret)}</b></div></div><div class="cols"><div><h2>${reportLang?'ਲਾਗਤ ਦਾ ਵੇਰਵਾ':'Cost breakdown'}</h2><table>${moneyRows}<tr><td><b>${reportLang?'ਕੁੱਲ ਲਾਗਤ':'Total cost'}</b></td><td><b>${money(total)}</b></td></tr></table></div><div><h2>${reportLang?'ਮਿੱਟੀ ਜਾਂਚ':'Soil test'}</h2><table>${soilRows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table><h2>${reportLang?'ਖਾਦ ਟੀਚੇ':'Fertilizer targets'}</h2><table><tr><td>N kg/acre</td><td>${val('nRec')}</td></tr><tr><td>P₂O₅ kg/acre</td><td>${val('pRec')}</td></tr><tr><td>K₂O kg/acre</td><td>${val('kRec')}</td></tr></table></div></div><div class="highlight">${reportLang?'ਲਾਈਵ ਕੀਮਤ / ਮੌਸਮ':'Live price / weather'}<br><b>${val('livePriceStatus')}</b><br><span>${val('livePriceMeta')} · ${val('weatherTemp')} · ${val('weatherNow')} · ${reportLang?'ਅਗਲੇ 3 ਦਿਨ ਮੀਂਹ':'3-day rain'} ${val('rain3')}</span></div><h2>${reportLang?'ਸਿੰਚਾਈ ਸਲਾਹ':'Irrigation advisory'}</h2><div class="callout"><b>${val('irrigationTitle')}</b><br>${val('irrigationText')}</div><div class="footer">${reportLang?'ਇਹ ਰਿਪੋਰਟ ਯੋਜਨਾ ਲਈ ਸ਼ੁਰੂਆਤੀ ਅੰਦਾਜ਼ਾ ਹੈ। ਖਾਦ ਦੀ ਅੰਤਿਮ ਮਾਤਰਾ ਮਿੱਟੀ ਜਾਂਚ, ਫ਼ਸਲ ਦੀ ਅਵਸਥਾ ਅਤੇ PAU/ਸਥਾਨਕ ਖੇਤੀ ਮਾਹਿਰ ਦੀ ਸਲਾਹ ਨਾਲ ਤੈਅ ਕਰੋ।':'This report is a planning estimate. Confirm final fertilizer rates with a soil test, crop stage, and PAU/local agronomy advice. Live mandi prices are daily wholesale records; verify before selling.'}</div></body></html>`);w.document.close();w.focus();setTimeout(()=>w.print(),350)}
 function loadExample(){document.getElementById('crop').selectedIndex=0;document.getElementById('acres').value=10;applyCropPreset()}
@@ -186,7 +224,7 @@ const seedDefaults={wheat:{plants:1.2,seeds:35,weight:40},rice:{plants:1.0,seeds
 function seedNum(id){return Math.max(0,parseFloat(document.getElementById(id).value)||0)}
 function formatCount(value){if(value>=1000000)return (value/1000000).toFixed(2)+'M';if(value>=1000)return (value/1000).toFixed(1)+'k';return Math.round(value).toLocaleString('en-IN')}
 function calculateSeedYield(){const acres=seedNum('seedFarmAcres'), plantsPerSqft=seedNum('plantsSqft'), seedsPerPlant=seedNum('seedsPlant'), seedWeight=seedNum('seedWeight'), survival=Math.min(100,seedNum('seedSurvival'))/100, area=acres*43560, plants=area*plantsPerSqft*survival, seeds=plants*seedsPerPlant, kg=seeds*seedWeight/1000000;document.getElementById('seedAreaSqft').textContent=Math.round(area).toLocaleString('en-IN')+' ft²';document.getElementById('seedPlantTotal').textContent=formatCount(plants);document.getElementById('seedTotal').textContent=formatCount(seeds);document.getElementById('seedHarvestKg').textContent=kg.toLocaleString('en-IN',{maximumFractionDigits:1})+' kg ('+(kg/100).toLocaleString('en-IN',{maximumFractionDigits:2})+' q)'}
-function applySeedDefaults(){const values=seedDefaults[document.getElementById('seedCrop').value];document.getElementById('plantsSqft').value=values.plants;document.getElementById('seedsPlant').value=values.seeds;document.getElementById('seedWeight').value=values.weight;calculateSeedYield()}
+function applySeedDefaults(){const values=seedDefaults[document.getElementById('seedCrop').value];document.getElementById('plantsSqft').value=Math.round(values.plants*100)/100;document.getElementById('seedsPlant').value=Math.round(values.seeds*100)/100;document.getElementById('seedWeight').value=Math.round(values.weight*100)/100;calculateSeedYield()}
 function cropKey(){const crop=document.getElementById('crop').value.toLowerCase();return crop.includes('paddy')||crop.includes('rice')?'paddy':crop.includes('maize')?'maize':crop.includes('potato')?'potato':crop.includes('other')?'other':'wheat'}
 	function cropMatches(row,key){const c=(row.commodity||'').toLowerCase();return key==='wheat'?c.includes('wheat'):key==='paddy'?(c.includes('paddy')||c.includes('rice')):key==='maize'?c.includes('maize'):key==='potato'?(c.includes('potato')&&!c.includes('sweet potato')):false}
 function setLiveStatus(status,meta){document.getElementById('livePriceStatus').textContent=status;document.getElementById('livePriceMeta').textContent=meta}
@@ -199,7 +237,7 @@ function learningValue(id,fallback=''){const el=document.getElementById(id);retu
 function renderLearningResources(){const crop=learningValue('guidedCrop','wheat'),cropLabel={wheat:'wheat',paddy:'rice/paddy',maize:'maize',potato:'potato',other:'crop'}[crop]||'crop',irrigation=learningValue('guidedIrrigation','local irrigation'),soil=learningValue('guidedPh')?'soil test results':'soil testing',cattle=residueNum('livestockCount'),location=farmLocation.precise?`${farmLocation.lat.toFixed(2)} ${farmLocation.lon.toFixed(2)}`:'Ludhiana Punjab',language=lang==='pa'?'Punjabi':'Punjabi English',topics=[{title:lang==='en'?'Crop production':'ਫ਼ਸਲ ਉਤਪਾਦਨ',description:lang==='en'?`Learn local ${cropLabel} sowing, seed rate, fertilizer, pests, and harvest practices.`:`ਸਥਾਨਕ ${cropLabel} ਦੀ ਬੀਜਾਈ, ਬੀਜ ਦਰ, ਖਾਦ, ਕੀੜੇ ਅਤੇ ਕਟਾਈ ਸਿੱਖੋ।`,query:`${cropLabel} farming ${location} PAU sowing fertilizer harvest ${language}`},{title:lang==='en'?'Water and irrigation':'ਪਾਣੀ ਅਤੇ ਸਿੰਚਾਈ',description:lang==='en'?`Learn irrigation timing for ${cropLabel} with ${irrigation} and rainfall planning.`:`${cropLabel} ਲਈ ${irrigation} ਨਾਲ ਸਿੰਚਾਈ ਸਮਾਂ ਅਤੇ ਮੀਂਹ ਯੋਜਨਾ ਸਿੱਖੋ।`,query:`${cropLabel} irrigation schedule rainfall ${irrigation} Punjab farmer ${language}`},{title:lang==='en'?'Soil and inputs':'ਮਿੱਟੀ ਅਤੇ ਇਨਪੁੱਟ',description:lang==='en'?`Understand ${soil}, nutrient symptoms, safe fertilizer, and IPM before spraying.`:`${soil}, غذائی کمی, ਸੁਰੱਖਿਅਤ ਖਾਦ ਅਤੇ ਛਿੜਕਾਅ ਤੋਂ ਪਹਿਲਾਂ IPM ਸਿੱਖੋ।`,query:`Punjab soil test ${soil} ${cropLabel} fertilizer IPM PAU ${language}`},{title:lang==='en'?'Cattle and crop leftovers':'ਪਸ਼ੂ ਅਤੇ ਰਹਿੰਦ-ਖੂੰਹਦ',description:lang==='en'?(cattle?`You entered ${cattle} cattle/buffalo. Learn safe straw feeding, ration balance, and residue sale.`:'Learn safe cattle feeding, straw storage, ration balance, and residue sale options.'):(cattle?`${cattle} ਪਸ਼ੂਆਂ ਲਈ ਸੁਰੱਖਿਅਤ ਪਰਾਲੀ ਚਾਰਾ, ਰਾਸ਼ਨ ਅਤੇ ਵਿਕਰੀ ਸਿੱਖੋ।`:'ਪਸ਼ੂਆਂ ਲਈ ਸੁਰੱਖਿਅਤ ਪਰਾਲੀ ਚਾਰਾ, ਸਟੋਰੇਜ, ਰਾਸ਼ਨ ਅਤੇ ਵਿਕਰੀ ਸਿੱਖੋ।'),query:`Punjab cattle feed ${cropLabel} straw residue safe ration veterinary ${language}`}];document.getElementById('learningGrid').innerHTML=topics.map(topic=>`<article class="learning-item"><h3>${topic.title}</h3><p>${topic.description}</p><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(topic.query)}" target="_blank" rel="noopener noreferrer">${lang==='en'?'Find videos on YouTube':'YouTube ਤੇ ਵੀਡੀਓ ਲੱਭੋ'}</a><div class="learning-query">${topic.query}</div></article>`).join('')}
 const residueDefaults={wheat:{tonnes:1.2},rice:{tonnes:1.5},maize:{tonnes:2.0},potato:{tonnes:0.5}};
 function residueNum(id){return Math.max(0,parseFloat(document.getElementById(id).value)||0)}
-function renderResiduePlan(){const crop=document.getElementById('residueCrop').value,acres=residueNum('residueAcres'),cattle=residueNum('livestockCount'),use=document.getElementById('residueUse').value,price=residueNum('residueSalePrice'),feedValue=residueNum('feedReplacementValue'),total=acres*residueDefaults[crop].tonnes,usable=total*.75,feedKg=use==='feed'?usable*1000:use==='split'?usable*500:0,feedDays=cattle?Math.floor(feedKg/(cattle*10)):0,saleTonnes=use==='sell'?usable:use==='split'?usable*.5:0,saleValue=saleTonnes*price;document.getElementById('residueTonnes').textContent=total.toFixed(1)+' t';document.getElementById('usableResidueTonnes').textContent=usable.toFixed(1)+' t';document.getElementById('residueFeedDays').textContent=feedDays+' '+(lang==='en'?'days':'ਦਿਨ');document.getElementById('residueSaleValue').textContent=money(saleValue);let title,advice;if(!cattle&&use==='feed'){title=lang==='en'?'No cattle entered':'ਕੋਈ ਪਸ਼ੂ ਦਰਜ ਨਹੀਂ';advice=lang==='en'?'Choose sale, soil return, or a mixed plan. Do not burn the leftover.':'ਵਿਕਰੀ, ਮਿੱਟੀ ਵਿੱਚ ਵਾਪਸੀ ਜਾਂ ਮਿਲੀ-ਜੁਲੀ ਯੋਜਨਾ ਚੁਣੋ। ਰਹਿੰਦ-ਖੂੰਹਦ ਨਾ ਸਾੜੋ।'}else if(cattle&&feedDays){title=lang==='en'?'Feed opportunity':'ਚਾਰੇ ਦਾ ਮੌਕਾ';advice=lang==='en'?`This plan could cover about ${feedDays} cattle-feed days. Dry, chop, and mix the residue safely; rice straw may need supplementation and local livestock advice.`:`ਇਹ ਯੋਜਨਾ ਲਗਭਗ ${feedDays} ਪਸ਼ੂ-ਚਾਰਾ ਦਿਨ ਦੇ ਸਕਦੀ ਹੈ। ਰਹਿੰਦ-ਖੂੰਹਦ ਸੁਕਾ ਕੇ ਕੱਟੋ ਅਤੇ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਮਿਲਾਓ; ਚੌਲ ਦੀ ਪਰਾਲੀ ਲਈ ਪੂਰਕ ਚਾਰਾ ਅਤੇ ਸਥਾਨਕ ਪਸ਼ੂ ਸਲਾਹ ਲੋੜੀਂਦੀ ਹੋ ਸਕਦੀ ਹੈ।`}else if(saleValue){title=lang==='en'?'Residue can add income':'ਰਹਿੰਦ-ਖੂੰਹਦ ਤੋਂ ਆਮਦਨ';advice=lang==='en'?`Potential residue sale value is ${money(saleValue)} at your entered price. Confirm a buyer, transport, moisture, and weight before counting it as profit.`:`ਤੁਹਾਡੇ ਭਰੇ ਭਾਅ ਤੇ ਰਹਿੰਦ-ਖੂੰਹਦ ਦੀ ਸੰਭਾਵੀ ਵਿਕਰੀ ${money(saleValue)} ਹੈ। ਮੁਨਾਫ਼ੇ ਵਿੱਚ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਖਰੀਦਦਾਰ, ਢੋਆਈ, ਨਮੀ ਅਤੇ ਵਜ਼ਨ ਪੱਕੇ ਕਰੋ।`}else{title=lang==='en'?'Return residue to the soil':'ਰਹਿੰਦ-ਖੂੰਹਦ ਮਿੱਟੀ ਵਿੱਚ ਵਾਪਸ ਦਿਓ';advice=lang==='en'?'Chop and incorporate suitable residue or use mulch to protect soil. Follow local equipment and decomposition advice.':'ਉਚਿਤ ਰਹਿੰਦ-ਖੂੰਹਦ ਕੱਟ ਕੇ ਮਿੱਟੀ ਵਿੱਚ ਮਿਲਾਓ ਜਾਂ ਮਲਚ ਵਜੋਂ ਵਰਤੋ। ਸਥਾਨਕ ਮਸ਼ੀਨਰੀ ਅਤੇ ਗਲਣ ਦੀ ਸਲਾਹ ਮੰਨੋ।'}document.getElementById('livestockAdviceTitle').textContent=title;document.getElementById('livestockAdviceText').textContent=advice}
+function renderResiduePlan(){const crop=document.getElementById('residueCrop').value||'wheat',acres=residueNum('residueAcres'),cattle=residueNum('livestockCount'),use=document.getElementById('residueUse').value,price=residueNum('residueSalePrice'),feedValue=residueNum('feedReplacementValue'),total=acres*(residueDefaults[crop]||residueDefaults.wheat).tonnes,usable=total*.75,feedKg=use==='feed'?usable*1000:use==='split'?usable*500:0,feedDays=cattle?Math.floor(feedKg/(cattle*10)):0,saleTonnes=use==='sell'?usable:use==='split'?usable*.5:0,saleValue=saleTonnes*price;document.getElementById('residueTonnes').textContent=total.toFixed(1)+' t';document.getElementById('usableResidueTonnes').textContent=usable.toFixed(1)+' t';document.getElementById('residueFeedDays').textContent=feedDays+' '+(lang==='en'?'days':'ਦਿਨ');document.getElementById('residueSaleValue').textContent=money(saleValue);let title,advice;if(!cattle&&use==='feed'){title=lang==='en'?'No cattle entered':'ਕੋਈ ਪਸ਼ੂ ਦਰਜ ਨਹੀਂ';advice=lang==='en'?'Choose sale, soil return, or a mixed plan. Do not burn the leftover.':'ਵਿਕਰੀ, ਮਿੱਟੀ ਵਿੱਚ ਵਾਪਸੀ ਜਾਂ ਮਿਲੀ-ਜੁਲੀ ਯੋਜਨਾ ਚੁਣੋ। ਰਹਿੰਦ-ਖੂੰਹਦ ਨਾ ਸਾੜੋ।'}else if(cattle&&feedDays){title=lang==='en'?'Feed opportunity':'ਚਾਰੇ ਦਾ ਮੌਕਾ';advice=lang==='en'?`This plan could cover about ${feedDays} cattle-feed days. Dry, chop, and mix the residue safely; rice straw may need supplementation and local livestock advice.`:`ਇਹ ਯੋਜਨਾ ਲਗਭਗ ${feedDays} ਪਸ਼ੂ-ਚਾਰਾ ਦਿਨ ਦੇ ਸਕਦੀ ਹੈ। ਰਹਿੰਦ-ਖੂੰਹਦ ਸੁਕਾ ਕੇ ਕੱਟੋ ਅਤੇ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਮਿਲਾਓ; ਚੌਲ ਦੀ ਪਰਾਲੀ ਲਈ ਪੂਰਕ ਚਾਰਾ ਅਤੇ ਸਥਾਨਕ ਪਸ਼ੂ ਸਲਾਹ ਲੋੜੀਂਦੀ ਹੋ ਸਕਦੀ ਹੈ।`}else if(saleValue){title=lang==='en'?'Residue can add income':'ਰਹਿੰਦ-ਖੂੰਹਦ ਤੋਂ ਆਮਦਨ';advice=lang==='en'?`Potential residue sale value is ${money(saleValue)} at your entered price. Confirm a buyer, transport, moisture, and weight before counting it as profit.`:`ਤੁਹਾਡੇ ਭਰੇ ਭਾਅ ਤੇ ਰਹਿੰਦ-ਖੂੰਹਦ ਦੀ ਸੰਭਾਵੀ ਵਿਕਰੀ ${money(saleValue)} ਹੈ। ਮੁਨਾਫ਼ੇ ਵਿੱਚ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਖਰੀਦਦਾਰ, ਢੋਆਈ, ਨਮੀ ਅਤੇ ਵਜ਼ਨ ਪੱਕੇ ਕਰੋ।`}else{title=lang==='en'?'Return residue to the soil':'ਰਹਿੰਦ-ਖੂੰਹਦ ਮਿੱਟੀ ਵਿੱਚ ਵਾਪਸ ਦਿਓ';advice=lang==='en'?'Chop and incorporate suitable residue or use mulch to protect soil. Follow local equipment and decomposition advice.':'ਉਚਿਤ ਰਹਿੰਦ-ਖੂੰਹਦ ਕੱਟ ਕੇ ਮਿੱਟੀ ਵਿੱਚ ਮਿਲਾਓ ਜਾਂ ਮਲਚ ਵਜੋਂ ਵਰਤੋ। ਸਥਾਨਕ ਮਸ਼ੀਨਰੀ ਅਤੇ ਗਲਣ ਦੀ ਸਲਾਹ ਮੰਨੋ।'}document.getElementById('livestockAdviceTitle').textContent=title;document.getElementById('livestockAdviceText').textContent=advice}
 let guidedStep=0;
 function syncGuidedToCalculator(){const crop=document.getElementById('guidedCrop').value, cropIndex={wheat:0,paddy:1,maize:2,potato:3,other:4}[crop]??0;document.getElementById('crop').selectedIndex=cropIndex;document.getElementById('acres').value=document.getElementById('guidedAcres').value;document.getElementById('yield').value=document.getElementById('guidedYield').value;document.getElementById('price').value=document.getElementById('guidedPrice').value;document.getElementById('fert').value=document.getElementById('guidedFertCost').value;document.getElementById('chem').value=document.getElementById('guidedPestCost').value;document.getElementById('other').value=document.getElementById('guidedHarvestCost').value;document.getElementById('soilPh').value=document.getElementById('guidedPh').value;document.getElementById('soilOc').value=document.getElementById('guidedOc').value;document.getElementById('soilP').value=document.getElementById('guidedP').value;document.getElementById('soilK').value=document.getElementById('guidedK').value;document.getElementById('simAcres').value=document.getElementById('guidedAcres').value; document.getElementById('residueAcres').value=document.getElementById('guidedAcres').value; document.getElementById('livestockCount').value=document.getElementById('guidedCattleCount').value; document.getElementById('residueUse').value=document.getElementById('guidedResidueUse').value; document.getElementById('residueCrop').value=crop==='paddy'?'rice':(crop==='other'?'wheat':crop); renderResiduePlan();document.getElementById('simSowingDate').value=document.getElementById('guidedSowingDate').value;document.getElementById('historyCrop').value=crop==='paddy'?'paddy':crop;calculate();updateSoilGuide();renderCropComparison()}
 function renderGuidedRecommendation(){syncGuidedToCalculator();const crop=document.getElementById('guidedCrop').value,soilKnown=['guidedPh','guidedOc','guidedP','guidedK'].some(id=>document.getElementById(id).value),water=document.getElementById('guidedIrrigation').value,rain=(window.lastWeather?.daily?.precipitation_sum||[]).slice(0,7).reduce((a,b)=>a+Number(b||0),0),best=Object.entries(simCrops).map(([key,c])=>({key,name:c.name[lang],profit:c.yield*c.price-c.cost})).sort((a,b)=>b.profit-a.profit)[0],cropName=simCrops[crop==='paddy'?'rice':crop]?.name[lang]||'your crop';let notes=[];if(!soilKnown)notes.push(lang==='en'?'Get a soil test before final fertilizer rates.':'ਖਾਦ ਦੀ ਅੰਤਿਮ ਮਾਤਰਾ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਜਾਂਚ ਕਰੋ।');if(water==='rainfed'&&['rice','potato'].includes(crop==='paddy'?'rice':crop))notes.push(lang==='en'?'This crop has high water pressure for a rainfed field; compare maize or wheat and confirm water access.':'ਮੀਂਹ-ਅਧਾਰਿਤ ਖੇਤ ਲਈ ਇਸ ਫ਼ਸਲ ਦੀ ਪਾਣੀ ਲੋੜ ਵੱਧ ਹੈ; ਮੱਕੀ ਜਾਂ ਕਣਕ ਦੀ ਤੁਲਨਾ ਕਰੋ ਅਤੇ ਪਾਣੀ ਪੱਕਾ ਕਰੋ।');if(document.getElementById('guidedPestPlan').value==='standard')notes.push(lang==='en'?'Prefer monitoring/IPM and spray only when needed.':'ਨਿਗਰਾਨੀ/IPM ਨੂੰ ਪਹਿਲ ਦਿਓ ਅਤੇ ਲੋੜ ਤੇ ਹੀ ਛਿੜਕਾਅ ਕਰੋ।');const cattle=residueNum('livestockCount'),feedDays=document.getElementById('residueFeedDays')?.textContent||'0 days',saleValue=document.getElementById('residueSaleValue')?.textContent||'₹0';if(cattle&&document.getElementById('residueUse').value==='feed')notes.push(lang==='en'?`Your ${cattle} cattle could use the leftover for about ${feedDays}; confirm safe drying and ration balance with a livestock adviser.`:`ਤੁਹਾਡੇ ${cattle} ਪਸ਼ੂ ਲਗਭਗ ${feedDays} ਤੱਕ ਰਹਿੰਦ-ਖੂੰਹਦ ਵਰਤ ਸਕਦੇ ਹਨ; ਸੁਰੱਖਿਅਤ ਸੁਕਾਈ ਅਤੇ ਸੰਤੁਲਿਤ ਰਾਸ਼ਨ ਲਈ ਪਸ਼ੂ ਮਾਹਿਰ ਨਾਲ ਪੱਕਾ ਕਰੋ।`);if(document.getElementById('residueUse').value==='sell')notes.push(lang==='en'?`Residue sale is shown separately at about ${saleValue}; confirm buyer, moisture, transport, and weight.`:`ਰਹਿੰਦ-ਖੂੰਹਦ ਦੀ ਵਿਕਰੀ ਲਗਭਗ ${saleValue} ਵੱਖਰੇ ਦਿਖਾਈ ਗਈ ਹੈ; ਖਰੀਦਦਾਰ, ਨਮੀ, ਢੋਆਈ ਅਤੇ ਵਜ਼ਨ ਪੱਕੇ ਕਰੋ।`);if(rain>=25)notes.push(lang==='en'?'Rain is likely in the next 7 days; check soil workability before sowing and avoid unnecessary irrigation.':'ਅਗਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ; ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਦੀ ਹਾਲਤ ਵੇਖੋ ਅਤੇ ਬੇਲੋੜੀ ਸਿੰਚਾਈ ਨਾ ਕਰੋ।');document.getElementById('guidedResultHeadline').textContent=lang==='en'?`${cropName} plan: ${money(best?.profit||0)} model profit / acre`:`${cropName} ਯੋਜਨਾ: ${money(best?.profit||0)} ਮਾਡਲ ਮੁਨਾਫ਼ਾ / ਏਕੜ`;document.getElementById('guidedResultText').textContent=lang==='en'?'Your entered costs and forecast will be shown in the detailed comparison below.':'ਤੁਹਾਡੀਆਂ ਲਾਗਤਾਂ ਅਤੇ ਭਵਿੱਖਬਾਣੀ ਹੇਠਾਂ ਵਿਸਥਾਰ ਤੁਲਨਾ ਵਿੱਚ ਦਿਖਾਈ ਜਾਵੇਗੀ।';document.getElementById('guidedRecommendationHeadline').textContent=best?.key===(crop==='paddy'?'rice':crop)?(lang==='en'?'Your chosen crop is the strongest model option':'ਤੁਹਾਡੀ ਚੁਣੀ ਫ਼ਸਲ ਮਾਡਲ ਵਿੱਚ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ਹੈ'):(lang==='en'?`Consider ${best?.name} as an alternative`:`ਵਿਕਲਪ ਵਜੋਂ ${best?.name} ਤੇ ਵਿਚਾਰ ਕਰੋ`);document.getElementById('guidedRecommendationText').textContent=notes.length?notes.join(' '):(lang==='en'?'Compare water, soil, market, and harvest logistics below before deciding.':'ਫੈਸਲਾ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਹੇਠਾਂ ਪਾਣੀ, ਮਿੱਟੀ, ਮੰਡੀ ਅਤੇ ਕਟਾਈ ਦੀ ਸਹੂਲਤ ਦੀ ਤੁਲਨਾ ਕਰੋ।')}
@@ -207,14 +245,14 @@ function showGuidedStep(){document.querySelectorAll('.guided-step').forEach((el,
 function guidedNext(){if(guidedStep<8){syncGuidedToCalculator();guidedStep++;renderLearningResources();if(guidedStep>=6)renderGuidedRecommendation();showGuidedStep()}}
 function guidedBack(){if(guidedStep>0){guidedStep--;showGuidedStep()}}
 const simCrops={wheat:{name:{en:'Wheat',pa:'ਕਣਕ'},yield:20.9,price:2275,cost:28500,days:152,water:{en:'Medium · 4–6 irrigations',pa:'ਦਰਮਿਆਨੀ · 4–6 ਸਿੰਚਾਈਆਂ'},months:[10,11,12],window:{en:'20 Oct–15 Dec',pa:'20 ਅਕਤੂਬਰ–15 ਦਸੰਬਰ'}},rice:{name:{en:'Rice / paddy',pa:'ਚੌਲ / ਝੋਨਾ'},yield:27,price:2320,cost:34500,days:120,water:{en:'Very high · rain + assured water',pa:'ਬਹੁਤ ਵੱਧ · ਮੀਂਹ + ਪੱਕਾ ਪਾਣੀ'},months:[6,7],window:{en:'1 Jun–10 Jul',pa:'1 ਜੂਨ–10 ਜੁਲਾਈ'}},maize:{name:{en:'Maize',pa:'ਮੱਕੀ'},yield:24,price:2200,cost:28600,days:110,water:{en:'Medium · protect from dry spells',pa:'ਦਰਮਿਆਨੀ · ਸੁੱਕੇ ਦੌਰ ਤੋਂ ਬਚਾਓ'},months:[6,7],window:{en:'20 Jun–31 Jul',pa:'20 ਜੂਨ–31 ਜੁਲਾਈ'}},potato:{name:{en:'Potato',pa:'ਆਲੂ'},yield:90,price:1200,cost:65700,days:100,water:{en:'Medium-high · frequent light irrigation',pa:'ਦਰਮਿਆਨੀ-ਵੱਧ · ਹਲਕੀ ਸਿੰਚਾਈ ਵਾਰ-ਵਾਰ'},months:[9,10,11],window:{en:'15 Sep–15 Nov',pa:'15 ਸਤੰਬਰ–15 ਨਵੰਬਰ'}}};
-function datePlus(date,days){const d=new Date(date+'T12:00:00');d.setDate(d.getDate()+days);return d.toLocaleDateString(lang==='en'?'en-IN':'pa-IN',{day:'numeric',month:'short',year:'numeric'})}
+const enMonths=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],paMonths=['ਜਨਵਰੀ','ਫ਼ਰਵਰੀ','ਮਾਰਚ','ਅਪ੍ਰੈਲ','ਮਈ','ਜੂਨ','ਜੁਲਾਈ','ਅਗਸਤ','ਸਤੰਬਰ','ਅਕਤੂਬਰ','ਨਵੰਬਰ','ਦਸੰਬਰ'];function datePlus(date,days){const d=new Date(date+'T12:00:00');d.setDate(d.getDate()+days);const M=lang==='en'?enMonths:paMonths;return d.getDate()+' '+M[d.getMonth()]+' '+d.getFullYear()}
 function cropWindowStatus(crop,date){const month=new Date(date+'T12:00:00').getMonth()+1;return crop.months.includes(month)}
-function renderCropComparison(){const date=document.getElementById('simSowingDate').value,acres=Math.max(0,parseFloat(document.getElementById('simAcres').value)||0),rain=(window.lastWeather?.daily?.precipitation_sum||[]).slice(0,7).reduce((a,b)=>a+Number(b||0),0),chance=Math.max(...(window.lastWeather?.daily?.precipitation_probability_max||[0]).slice(0,7).map(Number));const rows=Object.entries(simCrops).map(([key,crop])=>{const per=crop.yield*crop.price-crop.cost,total=per*acres,ready=date?cropWindowStatus(crop,date):false,weatherRisk=rain>=25||chance>=70,harvest=date?datePlus(date,crop.days):'—';return {key,crop,per,total,ready,weatherRisk,harvest}}).sort((a,b)=>b.per-a.per);const best=rows[0]?.key;document.getElementById('simRows').innerHTML=rows.map(row=>`<tr class="${row.key===best?'best-row':''}"><td>${row.crop.name[lang]} ${row.key===best?'<span class="sim-badge">'+(lang==='en'?'Highest model profit':'ਸਭ ਤੋਂ ਵੱਧ ਮਾਡਲ ਮੁਨਾਫ਼ਾ')+'</span>':''}</td><td>${money(row.per)}</td><td>${money(row.total)}</td><td>${row.crop.water[lang]}</td><td>${row.ready?(lang==='en'?'In window':'ਸਮੇਂ ਵਿੱਚ'):(lang==='en'?'Out of window':'ਸਮੇਂ ਤੋਂ ਬਾਹਰ')} · ${row.harvest}</td></tr>`).join('');const bestRow=rows[0];let title,text;if(!date){title=lang==='en'?'Add a planned sowing date':'ਬੀਜਾਈ ਦੀ ਮਿਤੀ ਭਰੋ';text=lang==='en'?'The comparison will flag whether each crop is in its local sowing window and estimate harvest timing.':'ਤੁਲਨਾ ਹਰ ਫ਼ਸਲ ਦੀ ਸਥਾਨਕ ਬੀਜਾਈ ਮਿਆਦ ਅਤੇ ਕਟਾਈ ਦਾ ਸਮਾਂ ਦੱਸੇਗੀ।'}else if(bestRow&&!bestRow.ready){title=lang==='en'?'No top-profit crop is in its sowing window':'ਸਭ ਤੋਂ ਵੱਧ ਮੁਨਾਫ਼ੇ ਵਾਲੀ ਫ਼ਸਲ ਸਮੇਂ ਵਿੱਚ ਨਹੀਂ';text=lang==='en'?`${bestRow.crop.name.en} has the highest model profit, but the selected date is outside its ${bestRow.crop.window.en} window. Do not choose on profit alone; prefer a crop that fits the season, water, soil, and market.`:`${bestRow.crop.name.pa} ਦਾ ਮਾਡਲ ਮੁਨਾਫ਼ਾ ਸਭ ਤੋਂ ਵੱਧ ਹੈ, ਪਰ ਮਿਤੀ ${bestRow.crop.window.pa} ਤੋਂ ਬਾਹਰ ਹੈ। ਸਿਰਫ਼ ਮੁਨਾਫ਼ੇ ਤੇ ਫੈਸਲਾ ਨਾ ਕਰੋ; ਮੌਸਮ, ਪਾਣੀ, ਮਿੱਟੀ ਅਤੇ ਮੰਡੀ ਵੇਖੋ।`}else if(weatherRisk){title=lang==='en'?'Weather watch before field work':'ਖੇਤ ਦੇ ਕੰਮ ਤੋਂ ਪਹਿਲਾਂ ਮੌਸਮ ਧਿਆਨ';text=lang==='en'?`Your selected date is in a sowing window, but the next 7 days show about ${rain.toFixed(1)} mm rain or a high rain chance. Check soil workability and drainage; delay irrigation if rain is sufficient.`:`ਚੁਣੀ ਮਿਤੀ ਬੀਜਾਈ ਦੀ ਮਿਆਦ ਵਿੱਚ ਹੈ, ਪਰ ਅਗਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਲਗਭਗ ${rain.toFixed(1)} mm ਮੀਂਹ ਜਾਂ ਵੱਧ ਸੰਭਾਵਨਾ ਹੈ। ਮਿੱਟੀ ਦੀ ਹਾਲਤ ਅਤੇ ਨਿਕਾਸ ਜਾਂਚੋ; ਮੀਂਹ ਕਾਫ਼ੀ ਹੋਵੇ ਤਾਂ ਸਿੰਚਾਈ ਰੋਕੋ।`}else{title=lang==='en'?'Pre-sowing plan looks workable':'ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਯੋਜਨਾ ਠੀਕ ਲੱਗਦੀ ਹੈ';text=lang==='en'?`The selected date fits ${bestRow?.crop.name.en||'the comparison'} and the next 7-day forecast does not show a strong rain risk. Confirm soil moisture and local field conditions before sowing.`:`ਚੁਣੀ ਮਿਤੀ ${bestRow?.crop.name.pa||'ਤੁਲਨਾ'} ਲਈ ਠੀਕ ਹੈ ਅਤੇ ਅਗਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਵੱਡਾ ਮੀਂਹ ਜੋਖਮ ਨਹੀਂ। ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਦੀ ਨਮੀ ਅਤੇ ਖੇਤ ਦੀ ਹਾਲਤ ਪੱਕੀ ਕਰੋ।`}document.getElementById('simAdviceTitle').textContent=title;document.getElementById('simAdviceText').textContent=text}
+function renderCropComparison(){const date=document.getElementById('simSowingDate').value,acres=Math.max(0,parseFloat(document.getElementById('simAcres').value)||0),rain=(window.lastWeather?.daily?.precipitation_sum||[]).slice(0,7).reduce((a,b)=>a+Number(b||0),0),chance=Math.max(...(window.lastWeather?.daily?.precipitation_probability_max||[0]).slice(0,7).map(Number)),weatherRisk=rain>=25||chance>=70;const rows=Object.entries(simCrops).map(([key,crop])=>{const per=crop.yield*crop.price-crop.cost,total=per*acres,ready=date?cropWindowStatus(crop,date):false,weatherRisk=rain>=25||chance>=70,harvest=date?datePlus(date,crop.days):'—';return {key,crop,per,total,ready,weatherRisk,harvest}}).sort((a,b)=>b.per-a.per);const best=rows[0]?.key;document.getElementById('simRows').innerHTML=rows.map(row=>`<tr class="${row.key===best?'best-row':''}"><td>${row.crop.name[lang]} ${row.key===best?'<span class="sim-badge">'+(lang==='en'?'Highest model profit':'ਸਭ ਤੋਂ ਵੱਧ ਮਾਡਲ ਮੁਨਾਫ਼ਾ')+'</span>':''}</td><td>${money(row.per)}</td><td>${money(row.total)}</td><td>${row.crop.water[lang]}</td><td>${row.ready?(lang==='en'?'In window':'ਸਮੇਂ ਵਿੱਚ'):(lang==='en'?'Out of window':'ਸਮੇਂ ਤੋਂ ਬਾਹਰ')} · ${row.harvest}</td></tr>`).join('');const bestRow=rows[0];let title,text;if(!date){title=lang==='en'?'Add a planned sowing date':'ਬੀਜਾਈ ਦੀ ਮਿਤੀ ਭਰੋ';text=lang==='en'?'The comparison will flag whether each crop is in its local sowing window and estimate harvest timing.':'ਤੁਲਨਾ ਹਰ ਫ਼ਸਲ ਦੀ ਸਥਾਨਕ ਬੀਜਾਈ ਮਿਆਦ ਅਤੇ ਕਟਾਈ ਦਾ ਸਮਾਂ ਦੱਸੇਗੀ।'}else if(bestRow&&!bestRow.ready){title=lang==='en'?'No top-profit crop is in its sowing window':'ਸਭ ਤੋਂ ਵੱਧ ਮੁਨਾਫ਼ੇ ਵਾਲੀ ਫ਼ਸਲ ਸਮੇਂ ਵਿੱਚ ਨਹੀਂ';text=lang==='en'?`${bestRow.crop.name.en} has the highest model profit, but the selected date is outside its ${bestRow.crop.window.en} window. Do not choose on profit alone; prefer a crop that fits the season, water, soil, and market.`:`${bestRow.crop.name.pa} ਦਾ ਮਾਡਲ ਮੁਨਾਫ਼ਾ ਸਭ ਤੋਂ ਵੱਧ ਹੈ, ਪਰ ਮਿਤੀ ${bestRow.crop.window.pa} ਤੋਂ ਬਾਹਰ ਹੈ। ਸਿਰਫ਼ ਮੁਨਾਫ਼ੇ ਤੇ ਫੈਸਲਾ ਨਾ ਕਰੋ; ਮੌਸਮ, ਪਾਣੀ, ਮਿੱਟੀ ਅਤੇ ਮੰਡੀ ਵੇਖੋ।`}else if(weatherRisk){title=lang==='en'?'Weather watch before field work':'ਖੇਤ ਦੇ ਕੰਮ ਤੋਂ ਪਹਿਲਾਂ ਮੌਸਮ ਧਿਆਨ';text=lang==='en'?`Your selected date is in a sowing window, but the next 7 days show about ${rain.toFixed(1)} mm rain or a high rain chance. Check soil workability and drainage; delay irrigation if rain is sufficient.`:`ਚੁਣੀ ਮਿਤੀ ਬੀਜਾਈ ਦੀ ਮਿਆਦ ਵਿੱਚ ਹੈ, ਪਰ ਅਗਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਲਗਭਗ ${rain.toFixed(1)} mm ਮੀਂਹ ਜਾਂ ਵੱਧ ਸੰਭਾਵਨਾ ਹੈ। ਮਿੱਟੀ ਦੀ ਹਾਲਤ ਅਤੇ ਨਿਕਾਸ ਜਾਂਚੋ; ਮੀਂਹ ਕਾਫ਼ੀ ਹੋਵੇ ਤਾਂ ਸਿੰਚਾਈ ਰੋਕੋ।`}else{title=lang==='en'?'Pre-sowing plan looks workable':'ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਯੋਜਨਾ ਠੀਕ ਲੱਗਦੀ ਹੈ';text=lang==='en'?`The selected date fits ${bestRow?.crop.name.en||'the comparison'} and the next 7-day forecast does not show a strong rain risk. Confirm soil moisture and local field conditions before sowing.`:`ਚੁਣੀ ਮਿਤੀ ${bestRow?.crop.name.pa||'ਤੁਲਨਾ'} ਲਈ ਠੀਕ ਹੈ ਅਤੇ ਅਗਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਵੱਡਾ ਮੀਂਹ ਜੋਖਮ ਨਹੀਂ। ਬੀਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਦੀ ਨਮੀ ਅਤੇ ਖੇਤ ਦੀ ਹਾਲਤ ਪੱਕੀ ਕਰੋ।`}document.getElementById('simAdviceTitle').textContent=title;document.getElementById('simAdviceText').textContent=text}
 async function useFarmLocation(){const button=document.getElementById('useLocation');if(!navigator.geolocation){document.getElementById('locationStatus').textContent=lang==='en'?'GPS is not available — using Ludhiana fallback':'GPS ਉਪਲਬਧ ਨਹੀਂ — ਲੁਧਿਆਣਾ ਸੰਦਰਭ ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਹੈ';return}button.disabled=true;document.getElementById('locationStatus').textContent=lang==='en'?'Requesting precise location…':'ਸਹੀ ਥਾਂ ਲਈ ਬੇਨਤੀ ਹੋ ਰਹੀ ਹੈ…';navigator.geolocation.getCurrentPosition(async position=>{farmLocation={lat:position.coords.latitude,lon:position.coords.longitude,label:'Your GPS location',precise:true};const preciseMessage=(lang==='en'?'Using precise GPS: ':'ਸਹੀ GPS ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਹੈ: ')+farmLocation.lat.toFixed(4)+', '+farmLocation.lon.toFixed(4);document.getElementById('locationStatus').textContent=preciseMessage;document.getElementById('guidedLocationStatus').textContent=preciseMessage;button.disabled=false;await fetchWeather()},()=>{const fallbackMessage=lang==='en'?'Location denied — using Ludhiana fallback':'ਥਾਂ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ — ਲੁਧਿਆਣਾ ਸੰਦਰਭ ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਹੈ';document.getElementById('locationStatus').textContent=fallbackMessage;document.getElementById('guidedLocationStatus').textContent=fallbackMessage;button.disabled=false})}
 function weatherText(code){if(code===0)return lang==='en'?'Clear sky':'ਸਾਫ਼ ਅਸਮਾਨ';if([1,2,3].includes(code))return lang==='en'?'Partly cloudy':'ਕੁਝ ਬੱਦਲ';if([51,53,55,56,57].includes(code))return lang==='en'?'Drizzle':'ਫੁਹਾਰ';if([61,63,65,66,67].includes(code))return lang==='en'?'Rain':'ਮੀਂਹ';if([80,81,82].includes(code))return lang==='en'?'Rain showers':'ਮੀਂਹ ਦੀਆਂ ਛਿੱਟਾਂ';if([95,96,99].includes(code))return lang==='en'?'Thunderstorm':'ਗਰਜ-ਤੂਫ਼ਾਨ';return lang==='en'?'Variable weather':'ਬਦਲਦਾ ਮੌਸਮ'}
 function irrigationAdvice(data){const d=data.daily||{}, rain24=Number(d.precipitation_sum?.[0]||0), rain3=(d.precipitation_sum||[]).slice(0,3).reduce((a,b)=>a+Number(b||0),0), chance=Math.max(...(d.precipitation_probability_max||[0]).slice(0,3).map(Number));const crop=cropKey();let title,text;if(rain24>=10||rain3>=20||chance>=70){title=lang==='en'?'Hold irrigation for now':'ਫਿਲਹਾਲ ਸਿੰਚਾਈ ਰੋਕੋ';text=lang==='en'?`Rain is likely around Ludhiana (${rain3.toFixed(1)} mm forecast over 3 days). Check drainage and revisit the field after the rain; avoid waterlogging, especially in heavy soil.`:`ਲੁਧਿਆਣਾ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ (3 ਦਿਨਾਂ ਵਿੱਚ ${rain3.toFixed(1)} mm)। ਨਿਕਾਸ ਜਾਂਚੋ ਅਤੇ ਮੀਂਹ ਤੋਂ ਬਾਅਦ ਖੇਤ ਮੁੜ ਵੇਖੋ; ਭਾਰੀ ਮਿੱਟੀ ਵਿੱਚ ਪਾਣੀ ਖੜ੍ਹਾ ਨਾ ਹੋਣ ਦਿਓ।`}else if(rain3<2&&chance<40){title=lang==='en'?'Plan a soil-moisture check':'ਮਿੱਟੀ ਦੀ ਨਮੀ ਜਾਂਚੋ';text=lang==='en'?`Little rain is forecast. Check soil moisture at root depth before irrigating; ${crop==='paddy'?'maintain the crop’s recommended water regime rather than adding water automatically.':'do not irrigate by calendar alone.'}`:`ਮੀਂਹ ਘੱਟ ਆਉਣ ਦੀ ਸੰਭਾਵਨਾ ਹੈ। ਸਿੰਚਾਈ ਤੋਂ ਪਹਿਲਾਂ ਜੜ੍ਹਾਂ ਦੀ ਗਹਿਰਾਈ ਤੇ ਮਿੱਟੀ ਦੀ ਨਮੀ ਜਾਂਚੋ; ${crop==='paddy'?'ਫ਼ਸਲ ਦੀ ਸਿਫ਼ਾਰਸ਼ੀ ਪਾਣੀ ਪ੍ਰਣਾਲੀ ਰੱਖੋ, ਆਪਣੇ ਆਪ ਵਾਧੂ ਪਾਣੀ ਨਾ ਦਿਓ।':'ਸਿਰਫ਼ ਕੈਲੰਡਰ ਦੇ ਆਧਾਰ ਤੇ ਸਿੰਚਾਈ ਨਾ ਕਰੋ।'}`}else{title=lang==='en'?'Wait and inspect the field':'ਉਡੀਕੋ ਅਤੇ ਖੇਤ ਜਾਂਚੋ';text=lang==='en'?`Some rain is possible (${rain3.toFixed(1)} mm forecast). Delay a full irrigation until you check soil moisture, crop stage, and the actual rain received.`:`ਕੁਝ ਮੀਂਹ ਸੰਭਵ ਹੈ (${rain3.toFixed(1)} mm ਅੰਦਾਜ਼ਾ)। ਪੂਰੀ ਸਿੰਚਾਈ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਦੀ ਨਮੀ, ਫ਼ਸਲ ਦੀ ਅਵਸਥਾ ਅਤੇ ਅਸਲ ਮੀਂਹ ਜਾਂਚੋ।`}document.getElementById('irrigationTitle').textContent=title;document.getElementById('irrigationText').textContent=text}
 function renderWeather(data,cached=false){window.lastWeather=data;document.getElementById('weatherTemp').textContent=Math.round(data.current.temperature_2m)+'°C';document.getElementById('weatherNow').textContent=weatherText(data.current.weather_code)+' · '+data.current.relative_humidity_2m+'% RH';const daily=data.daily;const rain3=(daily.precipitation_sum||[]).slice(0,3).reduce((a,b)=>a+Number(b||0),0);document.getElementById('rain24').textContent=Number(daily.precipitation_sum?.[0]||0).toFixed(1)+' mm';document.getElementById('rain3').textContent=rain3.toFixed(1)+' mm';document.getElementById('rainChance').textContent=Math.max(...(daily.precipitation_probability_max||[0]).slice(0,3).map(Number))+'%';document.querySelector('.weather-badge').textContent=cached?(lang==='en'?'Cached forecast':'ਕੈਸ਼ ਭਵਿੱਖਬਾਣੀ'):(lang==='en'?'Live forecast':'ਲਾਈਵ ਭਵਿੱਖਬਾਣੀ');irrigationAdvice(data); renderCropComparison()}
-async function fetchWeather(){try{const r=await fetch(weatherUrl());if(!r.ok)throw Error('weather');const data=await r.json();cacheSet('weatherCache',data);renderWeather(data)}catch(e){const saved=cacheGet('weatherCache');if(saved){renderWeather(saved.value,true);document.getElementById('irrigationText').textContent+=(lang==='en'?' Cached forecast — check local field conditions.':' ਕੈਸ਼ ਭਵਿੱਖਬਾਣੀ — ਸਥਾਨਕ ਖੇਤ ਦੀ ਸਥਿਤੀ ਜਾਂਚੋ।')}else{document.getElementById('weatherNow').textContent=lang==='en'?'Forecast unavailable — use field checks':'ਭਵਿੱਖਬਾਣੀ ਨਹੀਂ ਮਿਲੀ — ਖੇਤ ਦੀ ਜਾਂਚ ਕਰੋ';document.getElementById('irrigationTitle').textContent=lang==='en'?'Manual irrigation check':'ਮੈਨੂਅਲ ਸਿੰਚਾਈ ਜਾਂਚ';document.getElementById('irrigationText').textContent=lang==='en'?'Check soil moisture, crop stage, and local rain before irrigating.':'ਸਿੰਚਾਈ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਦੀ ਨਮੀ, ਫ਼ਸਲ ਦੀ ਅਵਸਥਾ ਅਤੇ ਸਥਾਨਕ ਮੀਂਹ ਜਾਂਚੋ।'}}}
+async function fetchWeather(){const ctl=new AbortController(),wt=setTimeout(()=>ctl.abort(),12000);try{const r=await fetch(weatherUrl(),{signal:ctl.signal});clearTimeout(wt);if(!r.ok)throw Error('weather');const data=await r.json();cacheSet('weatherCache',data);renderWeather(data)}catch(e){clearTimeout(wt);const saved=cacheGet('weatherCache');if(saved){renderWeather(saved.value,true);document.getElementById('irrigationText').textContent+=(lang==='en'?' Cached forecast — check local field conditions.':' ਕੈਸ਼ ਭਵਿੱਖਬਾਣੀ — ਸਥਾਨਕ ਖੇਤ ਦੀ ਸਥਿਤੀ ਜਾਂਚੋ।')}else{document.querySelector('.weather-badge').textContent=lang==='en'?'Forecast unavailable':'ਭਵਿੱਖਬਾਣੀ ਉਪਲਬਧ ਨਹੀਂ';document.getElementById('weatherTemp').textContent='—';document.getElementById('weatherNow').textContent=lang==='en'?'Forecast unavailable — use field checks':'ਭਵਿੱਖਬਾਣੀ ਨਹੀਂ ਮਿਲੀ — ਖੇਤ ਦੀ ਜਾਂਚ ਕਰੋ';document.getElementById('rain24').textContent='—';document.getElementById('rain3').textContent='—';document.getElementById('rainChance').textContent='—';document.getElementById('irrigationTitle').textContent=lang==='en'?'Manual irrigation check':'ਮੈਨੂਅਲ ਸਿੰਚਾਈ ਜਾਂਚ';document.getElementById('irrigationText').textContent=lang==='en'?'Check soil moisture, crop stage, and local rain before irrigating.':'ਸਿੰਚਾਈ ਤੋਂ ਪਹਿਲਾਂ ਮਿੱਟੀ ਦੀ ਨਮੀ, ਫ਼ਸਲ ਦੀ ਅਵਸਥਾ ਅਤੇ ਸਥਾਨਕ ਮੀਂਹ ਜਾਂਚੋ।'}}}
 const soilPresets={wheat:{n:50,p:25,k:0},paddy:{n:60,p:30,k:0},maize:{n:60,p:30,k:20},potato:{n:80,p:40,k:40},other:{n:50,p:25,k:15}};
 function soilLevel(value,type){if(value===''||value===null||Number.isNaN(Number(value)))return 'unknown';value=Number(value);if(type==='oc')return value<0.5?'low':value<0.75?'medium':'good';if(type==='p')return value<10?'low':value<25?'medium':'high';if(type==='k')return value<108?'low':value<280?'medium':'high';return value<6.5?'acidic':value>8.2?'alkaline':'normal'}
 function updateSoilGuide(){const ph=document.getElementById('soilPh').value,oc=document.getElementById('soilOc').value,sp=document.getElementById('soilP').value,sk=document.getElementById('soilK').value;const key=cropKey(),base=soilPresets[key];let n=base.n,p=base.p,k=base.k;const pLevel=soilLevel(sp,'p'),kLevel=soilLevel(sk,'k'),ocLevel=soilLevel(oc,'oc'),phLevel=soilLevel(ph,'ph');if(pLevel==='low')p=Math.round(p*1.3);if(pLevel==='high')p=Math.round(p*.75);if(kLevel==='low')k=Math.round(k*1.3);if(kLevel==='high')k=Math.round(k*.75);if(ocLevel==='low')n=Math.round(n*1.1);if(ocLevel==='good')n=Math.round(n*.95);document.getElementById('nRec').textContent=n;document.getElementById('pRec').textContent=p;document.getElementById('kRec').textContent=k;const known=[ph!==''&&phLevel,oc!==''&&ocLevel,sp!==''&&pLevel,sk!==''&&kLevel].filter(Boolean);if(!known.length){document.getElementById('soilStatus').textContent=lang==='en'?'Add soil values for a health readout':'ਮਿੱਟੀ ਦੀ ਸਿਹਤ ਵੇਖਣ ਲਈ ਅੰਕ ਭਰੋ';document.getElementById('soilSummary').textContent=lang==='en'?'The more values you enter, the more useful the suggestion becomes.':'ਜਿੰਨੇ ਵੱਧ ਅੰਕ ਭਰੋਗੇ, ਸਲਾਹ ਉੱਨੀ ਵਧੀਆ ਹੋਵੇਗੀ।';return}const flags=[];if(phLevel==='acidic')flags.push(lang==='en'?'acidic pH':'ਤੇਜ਼ਾਬੀ pH');if(phLevel==='alkaline')flags.push(lang==='en'?'alkaline pH':'ਖਾਰੀ pH');if(ocLevel==='low')flags.push(lang==='en'?'low organic carbon':'ਘੱਟ ਜੈਵਿਕ ਕਾਰਬਨ');if(pLevel==='low')flags.push(lang==='en'?'low P':'ਘੱਟ P');if(kLevel==='low')flags.push(lang==='en'?'low K':'ਘੱਟ K');document.getElementById('soilStatus').textContent=flags.length?(lang==='en'?'Watch: '+flags.join(' · '):'ਧਿਆਨ: '+flags.join(' · ')):(lang==='en'?'Soil looks broadly in range':'ਮਿੱਟੀ ਆਮ ਹੱਦ ਵਿੱਚ ਲੱਗਦੀ ਹੈ');document.getElementById('soilSummary').textContent=lang==='en'?'Starting target for '+document.getElementById('crop').value+': adjust after your lab report.':' '+document.getElementById('crop').value+' ਲਈ ਸ਼ੁਰੂਆਤੀ ਟੀਚਾ: ਲੈਬ ਰਿਪੋਰਟ ਤੋਂ ਬਾਅਦ ਸੋਧੋ।';const advice=flags.length?(lang==='en'?'Prioritize the flagged issue, add organic matter where carbon is low, and do not apply P or K blindly when the test is already high.':'ਜਿਸ ਸਮੱਸਿਆ ਵੱਲ ਧਿਆਨ ਹੈ ਉਸਨੂੰ ਪਹਿਲ ਦਿਓ, ਘੱਟ ਕਾਰਬਨ ਵਿੱਚ ਜੈਵਿਕ ਪਦਾਰਥ ਵਧਾਓ, ਅਤੇ ਜੇ ਜਾਂਚ ਵਿੱਚ P ਜਾਂ K ਵੱਧ ਹੈ ਤਾਂ ਬਿਨਾਂ ਲੋੜ ਨਾ ਪਾਓ।'):(lang==='en'?'Use split nitrogen and place P/K according to the soil test; keep residue and irrigation history in the plan.':'ਨਾਈਟ੍ਰੋਜਨ ਨੂੰ ਵੰਡ ਕੇ ਦਿਓ ਅਤੇ P/K ਮਿੱਟੀ ਜਾਂਚ ਅਨੁਸਾਰ ਪਾਓ; ਫ਼ਸਲ ਦੀ ਰਹਿੰਦ-ਖੂੰਹਦ ਅਤੇ ਸਿੰਚਾਈ ਦਾ ਰਿਕਾਰਡ ਵੀ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ।');document.getElementById('soilAdvice').textContent=advice;document.getElementById('soilAdviceTitle').textContent=lang==='en'?'Ludhiana guide':'ਲੁਧਿਆਣਾ ਸਲਾਹ';localStorage.setItem('soilHealth',JSON.stringify({ph,oc,sp,sk}))}
@@ -226,4 +264,324 @@ function updateSoilGuide(){const ph=document.getElementById('soilPh').value,oc=d
       window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
     }
   </script>
+<script>
+/* ===== Kheti Agent v1 (offline rule parser + DOM glue) ===== */
+/* Kheti Agent v1 core — rule-based command parser.
+   Zero models, zero downloads, fully offline. Pure function: no DOM.
+   Binding rule: each number binds to the NEAREST keyword (distance 1, then 2).
+   Semantics:
+   - Crop name              -> select crop + apply preset costs
+   - "N acre(s)"            -> set acres
+   - "field N" / "N field"  -> SET per-acre cost (replace)
+   - "N bags [dap|urea..]"  -> ADD (n * bag price / acres) to fertilizer
+   - "yield N" / "N quintal (<=200)" -> yield/acre
+   - "price N" / "Rs N" / "N quintal (>500)" -> price/quintal
+*/
+function parseAgentCommand(rawText) {
+  var GURU = {'\u0A66':'0','\u0A67':'1','\u0A68':'2','\u0A69':'3','\u0A6A':'4',
+              '\u0A6B':'5','\u0A6C':'6','\u0A6D':'7','\u0A6E':'8','\u0A6F':'9'};
+  var NUMW = {one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,
+    eleven:11,twelve:12,ik:1,ikk:1,'do':2,tin:3,tinn:3,char:4,panj:5,che:6,chhe:6,
+    satt:7,sat:7,ath:8,atth:8,nau:9,das:10,
+    '\u0A07\u0A3F\u0A15':1,'\u0A07\u0A15':1,'\u0A26\u0A4B':2,'\u0A24\u0A3F\u0A28':3,
+    '\u0A1A\u0A3E\u0A30':4,'\u0A2A\u0A70\u0A1C':5,'\u0A1B\u0A47':6,'\u0A38\u0A71\u0A24':7,
+    '\u0A05\u0A71\u0A20':8,'\u0A28\u0A4C\u0A02':9,'\u0A26\u0A38':10};
+  var CROPS = [
+    {key:'wheat', idx:0, words:['wheat','kanak','kank','\u0A15\u0A23\u0A15']},
+    {key:'paddy', idx:1, words:['paddy','rice','jhona','jhauna','chaul','chawal','chaawal',
+      'dhan','dhaan','\u0A1D\u0A4B\u0A28\u0A3E','\u0A1A\u0A4C\u0A32','\u0A1A\u0A3E\u0A35\u0A32','\u0A27\u0A3E\u0A28']},
+    {key:'maize', idx:2, words:['maize','makki','makka','maki','corn','\u0A2E\u0A71\u0A15\u0A40','\u0A2E\u0A71\u0A15\u0A3E']},
+    {key:'potato',idx:3, words:['potato','aaloo','alu','aloo','\u0A06\u0A32\u0A42']},
+    {key:'other', idx:4, words:['other','\u0A39\u0A4B\u0A30']}
+  ];
+  var CROPWORD = {};
+  CROPS.forEach(function (c) { c.words.forEach(function (w) { CROPWORD[w] = c; }); });
+  var BAGW = ['bag','bags','bori','borian','boriyan','gatta','\u0A2C\u0A4B\u0A30\u0A40','\u0A2C\u0A4B\u0A30\u0A40\u0A06\u0A02','\u0A17\u0A71\u0A1F\u0A3E'];
+  var FERTS = {dap:1350, urea:266, yuria:266, mop:1700, potash:1700, ssp:450, npk:1470};
+  var FIELDW = [
+    ['seed',  ['seed','beej','bij','\u0A2C\u0A40\u0A1C']],
+    ['fert',  ['fertilizer','fertiliser','khad','dap','urea','yuria','mop','potash','ssp','npk','\u0A16\u0A3E\u0A26']],
+    ['chem',  ['spray','pesticide','insecticide','weedicide','dawai','davai','\u0A38\u0A2A\u0A30\u0A47','\u0A26\u0A35\u0A3E\u0A08']],
+    ['fuel',  ['diesel','fuel','tractor','\u0A21\u0A40\u0A1C\u0A32']],
+    ['other', ['labour','labor','laber','majdoori','mazdoori','mazdoor','harvest','harvesting','combine','\u0A15\u0A1F\u0A3E\u0A08','\u0A2E\u0A1C\u0A26\u0A42\u0A30\u0A40','\u0A2E\u0A1C\u0A26\u0A42\u0A30']],
+    ['fixed', ['theka','thekaa','rent','lease','fixed','\u0A20\u0A47\u0A15\u0A3E']]
+  ];
+  var FIELDWORD = {};
+  FIELDW.forEach(function (pair) { pair[1].forEach(function (w) { FIELDWORD[w] = pair[0]; }); });
+  var ACREW = ['acre','acres','ekad','ekar','killa','kille','keela','\u0A15\u0A3F\u0A71\u0A32\u0A3E','\u0A0F\u0A15\u0A5C'];
+  var YIELDW = ['yield','jhad','\u0A1D\u0A3E\u0A5C'];
+  var QUINTW = ['quintal','quintals','\u0A15\u0A41\u0A07\u0A70\u0A1F\u0A32'];
+  var PRICEW = ['price','rate','rates','bhav','bhaav','mandi','\u0A2E\u0A70\u0A21\u0A40','\u0A2D\u0A3E\u0A05'];
+  var RSW = ['rs','rupee','rupees','rupaye','\u0A30\u0A41\u0A2A\u0A0F'];
+  var FILLER = ['of','the','a','an','per','to','ka','ke','ki','da','de','di','nu','te',
+                '\u0A28\u0A42\u0A02','\u0A26\u0A3E','\u0A26\u0A47','\u0A26\u0A40','\u0A24\u0A47'];
+  var RESETW = ['reset','clear','saaf','\u0A38\u0A3E\u0A2B','\u0A30\u0A40\u0A38\u0A48\u0A1F'];
+
+  var text = String(rawText || '');
+  text = text.replace(/[੦-੯]/g, function (ch) { return GURU[ch]; }).replace(/,/g, '')
+             .replace(/\u0A3C/g, ''); // strip nukta: ਜ਼->ਜ etc. (farmers type both)
+  var lower = text.toLowerCase();
+  var tokens = lower.split(/[\s;|]+/).filter(Boolean)
+                   .filter(function (t) { return FILLER.indexOf(t) < 0; });
+
+  var out = { reset:false, crop:null, acres:null, costs:[], bags:[],
+              yield_:null, price_:null, understood:false };
+
+  var ti, tok;
+  for (ti = 0; ti < tokens.length; ti++) {
+    tok = tokens[ti];
+    if (RESETW.indexOf(tok) >= 0) { out.reset = true; out.understood = true; return out; }
+    if (!out.crop && CROPWORD[tok]) out.crop = CROPWORD[tok];
+  }
+
+  function numVal(tok, prevTok) {
+    var rupee = tok.charAt(0) === '\u20B9' || RSW.indexOf(prevTok) >= 0;
+    var t = tok.replace(/^\u20B9/, '');
+    var m = t.match(/^\d+(?:\.\d+)?$/);
+    if (m) return { value: parseFloat(m[0]), rupee: rupee };
+    if (NUMW[tok] != null) return { value: NUMW[tok], rupee: false };
+    return null;
+  }
+  function kindAt(tok) {
+    if (BAGW.indexOf(tok) >= 0) return 'bag';
+    if (ACREW.indexOf(tok) >= 0) return 'acre';
+    if (FIELDWORD[tok]) return 'field';
+    if (PRICEW.indexOf(tok) >= 0) return 'price';
+    if (YIELDW.indexOf(tok) >= 0) return 'yield';
+    if (QUINTW.indexOf(tok) >= 0) return 'quint';
+    return null;
+  }
+
+  for (var i = 0; i < tokens.length; i++) {
+    var nv = numVal(tokens[i], i > 0 ? tokens[i - 1] : '');
+    if (!nv) continue;
+    var val = nv.value, hit = null;
+
+    // Nearest keyword wins: check distance 1, then 2.
+    // Tie-break: unit words (acre/bag/quintal) bind FORWARD ("2 acre"),
+    // field names bind BACKWARD ("yield 22", "seed 1800").
+    for (var d = 1; d <= 2 && !hit; d++) {
+      var cands = [];
+      [i - d, i + d].forEach(function (j) {
+        if (j < 0 || j >= tokens.length) return;
+        var k = kindAt(tokens[j]);
+        if (k) cands.push({ kind: k, tok: tokens[j], post: j > i });
+      });
+      if (!cands.length) continue;
+      var order = { bag:0, acre:1, field:2, price:3, yield:4, quint:5 };
+      var unitPost = cands.filter(function (c) {
+        return c.post && (c.kind === 'bag' || c.kind === 'acre' || c.kind === 'quint');
+      }).sort(function (a, b) { return order[a.kind] - order[b.kind]; });
+      var pre = cands.filter(function (c) { return !c.post; })
+                     .sort(function (a, b) { return order[a.kind] - order[b.kind]; });
+      var post = cands.filter(function (c) { return c.post; })
+                      .sort(function (a, b) { return order[a.kind] - order[b.kind]; });
+      hit = unitPost[0] || pre[0] || post[0] || null;
+    }
+
+    if (hit && hit.kind === 'bag') {
+      var fname = null;
+      for (var s = Math.max(0, i - 2); s <= Math.min(tokens.length - 1, i + 2); s++) {
+        if (FERTS[tokens[s]] != null) { fname = tokens[s]; break; }
+      }
+      var assumedName = !fname;
+      if (!fname) fname = 'dap';
+      out.bags.push({ name: fname, n: val, price: FERTS[fname], assumedName: assumedName });
+    } else if (hit && hit.kind === 'acre') {
+      out.acres = val;
+    } else if (hit && hit.kind === 'field') {
+      out.costs.push({ field: FIELDWORD[hit.tok], value: val });
+    } else if (hit && hit.kind === 'price') {
+      out.price_ = val;
+    } else if (hit && (hit.kind === 'yield' || hit.kind === 'quint')) {
+      if (hit.kind === 'quint' && val > 500) out.price_ = val;
+      else out.yield_ = val;
+    } else if (nv.rupee) {
+      out.price_ = val;
+    }
+    // Bare number with no context -> ignore (no guessing).
+  }
+
+  // Last explicit set wins per field.
+  var seen = {};
+  out.costs = out.costs.reverse().filter(function (c) {
+    if (seen[c.field]) return false;
+    seen[c.field] = true; return true;
+  }).reverse();
+
+  out.understood = !!(out.crop || out.acres != null || out.costs.length ||
+                      out.bags.length || out.yield_ != null || out.price_ != null);
+  return out;
+}
+
+if (typeof module !== 'undefined' && module.exports) module.exports = { parseAgentCommand };
+
+/* Kheti Agent v1 — DOM glue.
+   Requires: parseAgentCommand (agent-core.js) and the app's globals
+   (lang, money, num, calculate, applyCropPreset, resetForm). */
+(function () {
+  var CROP_NAME = {
+    wheat:  { en: 'Wheat',  pa: '\u0A15\u0A23\u0A15' },
+    paddy:  { en: 'Paddy',  pa: '\u0A1D\u0A4B\u0A28\u0A3E' },
+    maize:  { en: 'Maize',  pa: '\u0A2E\u0A71\u0A15\u0A40' },
+    potato: { en: 'Potato', pa: '\u0A06\u0A32\u0A42' },
+    other:  { en: 'Other',  pa: '\u0A39\u0A4B\u0A30' }
+  };
+  var FIELD_NAME = {
+    seed:  { en: 'Seed',       pa: '\u0A2C\u0A40\u0A1C' },
+    fert:  { en: 'Fertilizer', pa: '\u0A16\u0A3E\u0A26' },
+    chem:  { en: 'Spray',      pa: '\u0A38\u0A2A\u0A30\u0A47' },
+    fuel:  { en: 'Diesel',     pa: '\u0A21\u0A40\u0A1C\u0A32' },
+    other: { en: 'Labor',      pa: '\u0A2E\u0A1C\u0A26\u0A42\u0A30\u0A40' },
+    fixed: { en: 'Contract',   pa: '\u0A20\u0A47\u0A15\u0A3E' }
+  };
+
+  var agentLast = null;
+
+  function L(en, pa) { return (typeof lang !== 'undefined' && lang === 'pa') ? pa : en; }
+  function signed(n) { return (n < 0 ? '\u2212' : '') + money(Math.abs(n)); }
+
+  function resultHtml() {
+    if (!agentLast) return '';
+    if (agentLast.reset) {
+      return '<div class="agent-ok">' + L('\u2713 Cleared \u2014 form reset.', '\u2713 \u0A38\u0A3E\u0A2B \u2014 \u0A2B\u0A3E\u0A30\u0A2E \u0A2E\u0A41\u0A5C \u0A24\u0A3F\u0A06\u0A30\u0964') + '</div>';
+    }
+    if (!agentLast.ok) {
+      return '<div class="agent-miss"><b>' +
+        L("I didn't catch that.", '\u0A2E\u0A48\u0A28\u0A42\u0A70 \u0A38\u0A2E\u0A1D \u0A28\u0A39\u0A40\u0A02 \u0A06\u0A07\u0A06\u0964') +
+        '</b><br>' +
+        L('Try: \u201C2 acre wheat\u201D or \u201C5 acre paddy, DAP 2 bags\u201D.',
+          '\u0A05\u0A1C\u0A3C\u0A2E\u0A3E\u0A13: \u201C2 \u0A0F\u0A15\u0A5C \u0A15\u0A23\u0A15\u201D \u0A1C\u0A3E\u0A02 \u201C5 \u0A0F\u0A15\u0A5C \u0A1D\u0A4B\u0A28\u0A3E, DAP 2 \u0A2C\u0A4B\u0A30\u0A40\u0A06\u0A02\u201D\u0964') +
+        '</div>';
+    }
+    var lines = agentLast.items.map(function (it) {
+      switch (it.t) {
+        case 'crop':
+          return '\u2022 ' + L('Crop', '\u0A2B\u0A3C\u0A38\u0A32') + ': <b>' + CROP_NAME[it.key][lang] + '</b> ' +
+            L('(preset costs applied)', '(\u0A24\u0A3F\u0A06\u0A30 \u0A32\u0A3E\u0A17\u0A24\u0A3E\u0A02 \u0A32\u0A3E\u0A17\u0A42)');
+        case 'acres':
+          return '\u2022 ' + L('Acres', '\u0A0F\u0A15\u0A5C') + ': <b>' + it.v + '</b>';
+        case 'cost':
+          return '\u2022 ' + FIELD_NAME[it.field][lang] + ': <b>' + money(it.v) + '</b>/' + L('acre', '\u0A0F\u0A15\u0A5C');
+        case 'bag':
+          return '\u2022 +' + money(it.perAcre) + '/' + L('acre', '\u0A0F\u0A15\u0A5C') + ' \u2014 ' + it.n + ' ' + it.name + ' ' +
+            L('bags', '\u0A2C\u0A4B\u0A30\u0A40\u0A06\u0A02') + ' @ ' + money(it.price) + ' \u00F7 ' + it.acres + ' ' + L('acres', '\u0A0F\u0A15\u0A5C') +
+            (it.assumedName ? ' ' + L('(assumed DAP)', '(DAP \u0A2E\u0A70\u0A28\u0A3F\u0A06)') : '');
+        case 'yield':
+          return '\u2022 ' + L('Yield', '\u0A1D\u0A3E\u0A5C') + ': <b>' + it.v + '</b> ' + L('quintals/acre', '\u0A15\u0A41\u0A07\u0A70\u0A1F\u0A32/\u0A0F\u0A15\u0A5C');
+        case 'price':
+          return '\u2022 ' + L('Price', '\u0A2D\u0A3E\u0A05') + ': <b>' + money(it.v) + '</b>/' + L('quintal', '\u0A15\u0A41\u0A07\u0A70\u0A1F\u0A32');
+        default: return '';
+      }
+    }).join('<br>');
+    var netLine = '<div class="agent-net">' + L('Net', '\u0A38\u0A3C\u0A41\u0A27') + ': <b>' + signed(agentLast.net) + '</b>/' +
+      L('acre', '\u0A0F\u0A15\u0A5C') + ' \u00B7 ' + L('Total', '\u0A15\u0A41\u0A71\u0A32') + ': <b>' + signed(agentLast.total) + '</b> (' +
+      agentLast.acresN + ' ' + L('acres', '\u0A0F\u0A15\u0A5C') + ')</div>';
+    var notes = '';
+    if (agentLast.assumedAcres) {
+      notes += '<div class="agent-note">' + L(
+        'No acres given \u2014 bag cost spread over 1 acre. Add acres for the right split.',
+        '\u0A0F\u0A15\u0A5C \u0A28\u0A39\u0A40\u0A02 \u0A26\u0A71\u0A38\u0A3F\u0A06 \u2014 \u0A2C\u0A4B\u0A30\u0A40 \u0A26\u0A40 \u0A32\u0A3E\u0A17\u0A24 1 \u0A0F\u0A15\u0A5C \u0A24\u0A47 \u0A35\u0A70\u0A21\u0A40\u0964 \u0A38\u0A39\u0A40 \u0A39\u0A3F\u0A38\u0A3E\u0A2C \u0A32\u0A08 \u0A0F\u0A15\u0A5C \u0A32\u0A3F\u0A16\u0A4B\u0964') + '</div>';
+    }
+    if (agentLast.items.some(function (x) { return x.t === 'bag'; })) {
+      notes += '<div class="agent-note">' + L(
+        'Bag prices assumed: DAP \u20B91,350 \u00B7 Urea \u20B9266 \u00B7 MOP \u20B91,700. Your shop price may differ \u2014 the math is shown so you can adjust.',
+        '\u0A2C\u0A4B\u0A30\u0A40 \u0A26\u0A47 \u0A2D\u0A3E\u0A05 \u0A2E\u0A70\u0A28\u0A47 \u0A17\u0A0F: DAP \u20B91,350 \u00B7 \u0A2F\u0A42\u0A30\u0A40\u0A06 \u20B9266 \u00B7 MOP \u20B91,700\u0964 \u0A24\u0A41\u0A39\u0A3E\u0A21\u0A40 \u0A26\u0A41\u0A15\u0A3E\u0A28 \u0A26\u0A3E \u0A2D\u0A3E\u0A05 \u0A35\u0A71\u0A16 \u0A39\u0A4B \u0A38\u0A15\u0A26\u0A3E \u0A39\u0A48 \u2014 \u0A39\u0A3F\u0A38\u0A3E\u0A2C \u0A26\u0A3F\u0A16\u0A3E\u0A07\u0A06 \u0A39\u0A48 \u0A24\u0A3E\u0A02 \u0A1C\u0A4B \u0A24\u0A41\u0A38\u0A40\u0A02 \u0A20\u0A40\u0A15 \u0A15\u0A30 \u0A38\u0A15\u0A4B\u0964') + '</div>';
+    }
+    return '<div class="agent-ok">' + lines + netLine + '</div>' + notes;
+  }
+
+  function runAgent() {
+    var input = document.getElementById('agentInput');
+    var box = document.getElementById('agentResult');
+    var text = input.value.trim();
+    if (!text) return;
+    var p = parseAgentCommand(text);
+
+    if (p.reset) {
+      resetForm();
+      agentLast = { reset: true };
+      box.innerHTML = resultHtml();
+      return;
+    }
+    if (!p.understood) {
+      agentLast = { ok: false };
+      box.innerHTML = resultHtml();
+      return;
+    }
+
+    var items = [];
+    if (p.crop) {
+      document.getElementById('crop').selectedIndex = p.crop.idx;
+      applyCropPreset();
+      items.push({ t: 'crop', key: p.crop.key });
+    }
+    if (p.acres != null) {
+      document.getElementById('acres').value = p.acres;
+      items.push({ t: 'acres', v: p.acres });
+    }
+    p.costs.forEach(function (c) {
+      document.getElementById(c.field).value = c.value;
+      items.push({ t: 'cost', field: c.field, v: c.value });
+    });
+
+    var acresEff = parseFloat(document.getElementById('acres').value) || 0;
+    var assumedAcres = false;
+    if (p.bags.length) {
+      if (!(acresEff > 0)) { acresEff = 1; assumedAcres = true; }
+      var fertEl = document.getElementById('fert');
+      var cur = parseFloat(fertEl.value) || 0;
+      p.bags.forEach(function (b) {
+        var perAcre = Math.round(b.n * b.price / acresEff);
+        cur += perAcre;
+        items.push({ t: 'bag', name: b.name.toUpperCase(), n: b.n, price: b.price,
+                     perAcre: perAcre, acres: acresEff, assumedName: b.assumedName });
+      });
+      fertEl.value = cur;
+    }
+    if (p.yield_ != null) {
+      document.getElementById('yield').value = p.yield_;
+      items.push({ t: 'yield', v: p.yield_ });
+    }
+    if (p.price_ != null) {
+      document.getElementById('price').value = p.price_;
+      items.push({ t: 'price', v: p.price_ });
+    }
+
+    calculate();
+
+    var acresN = num('acres');
+    var total = num('seed') + num('fert') + num('chem') + num('fuel') + num('other') + num('fixed');
+    var ret = num('yield') * num('price') - total;
+
+    agentLast = { items: items, net: ret, total: ret * acresN, acresN: acresN,
+                  ok: p.understood, assumedAcres: assumedAcres };
+    box.innerHTML = resultHtml();
+  }
+
+  function agentStatic() {
+    var input = document.getElementById('agentInput');
+    if (input) input.placeholder = L('e.g. 2 acre wheat, DAP 2 bags',
+      '\u0A1C\u0A3F\u0A35\u0A47\u0A02: 2 \u0A0F\u0A15\u0A5C \u0A15\u0A23\u0A15, DAP 2 \u0A2C\u0A4B\u0A30\u0A40\u0A06\u0A02');
+    if (agentLast) document.getElementById('agentResult').innerHTML = resultHtml();
+  }
+
+  document.getElementById('agentGo').addEventListener('click', runAgent);
+  document.getElementById('agentInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') runAgent();
+  });
+  document.querySelectorAll('.agent-chip').forEach(function (ch) {
+    ch.addEventListener('click', function () {
+      document.getElementById('agentInput').value =
+        (typeof lang !== 'undefined' && lang === 'pa') ? ch.dataset.cmdPa : ch.dataset.cmdEn;
+      runAgent();
+    });
+  });
+  // Re-render on language toggle (runs after the app's own setLanguage).
+  document.getElementById('enBtn').addEventListener('click', function () { setTimeout(agentStatic, 0); });
+  document.getElementById('paBtn').addEventListener('click', function () { setTimeout(agentStatic, 0); });
+  agentStatic();
+})();
+
+</script>
   </body></html>
