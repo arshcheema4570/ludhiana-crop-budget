@@ -25,15 +25,6 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Responsive layout for phones, tablets, and desktop screens.
 - Print-friendly styling.
 
-## Run locally
-
-This is a self-contained static HTML application. Open `index.html` directly in a browser, or serve the project with any static web server:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then visit <http://localhost:8000>.
 
 ## Install on a phone
 
