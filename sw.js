@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kheti-numbers-v2';
+const CACHE_NAME = 'kheti-numbers-v3';
 const APP_SHELL = [
   './',
   './index.html',
@@ -31,6 +31,7 @@ self.addEventListener('fetch', event => {
 
   // Let live mandi and weather requests use the app's own localStorage fallbacks.
   if (requestUrl.origin !== self.location.origin) return;
+  if (!requestUrl.pathname.startsWith(new URL(self.registration.scope).pathname)) return;
 
   if (event.request.mode === 'navigate') {
     event.respondWith(
