@@ -2,6 +2,8 @@
 
 A bilingual (English / Punjabi) offline-first crop budgeting tool for farmers in and around Ludhiana, Punjab.
 
+**Try it:** [Open Kheti Numbers](https://arshcheema4570.github.io/ludhiana-crop-budget/)
+
 The calculator estimates **cost per acre, break-even price, expected return, and margin** using crop, land, yield, price, labor, input, irrigation, and machinery assumptions. It also includes lightweight soil-health guidance, crop-rotation notes, and optional live mandi-price and weather lookups.
 
 ## Features
