@@ -16,6 +16,8 @@ The calculator estimates **cost per acre, break-even price, expected return, and
 - Seed-count yield estimator for wheat and rice using farm area, plant density, seeds per plant, survival rate, and 1,000-seed weight.
 - Responsive offline chart comparing revenue, each expense category, and profit or loss.
 - Historical Punjab market-price trend chart for wheat, paddy/rice, maize, and potato.
+- Exact mandi/APMC historical-price trend selection; no province-wide average is shown as a substitute when exact-market history is missing.
+- Fertilizer cost builder using the farmer's recommended product quantities and local dealer quotes per bag.
 - Installable PWA with home-screen icons and an offline service-worker app shell.
 - WhatsApp share button that sends a concise crop-budget and yield estimate to family or advisors.
 - GPS-aware pre-sowing simulator comparing model profit, whole-farm return, water pressure, sowing readiness, and estimated harvest date.
@@ -55,6 +57,8 @@ The app creates four current YouTube search topics whenever it opens: crop produ
 ## Data and assumptions
 
 The included crop, soil, weather, and price values are intended as **starting assumptions**, not official recommendations. Replace them with your own soil-lab report, local mandi quote, farm records, and advice from a qualified agricultural extension professional before making production or financial decisions.
+
+The fertilizer-cost builder totals user-entered quantities per acre multiplied by actual local bag prices for urea, DAP, MOP, and other fertilizers. It does not infer application rates from location or substitute generic retail prices; use the current local dealer quote and the soil-test/PAU recommendation for the specific field. The historical-price chart requests the exact mandi/APMC name entered by the farmer. If the source has no history for that exact market and crop, the chart reports no exact-market records instead of silently showing a Punjab-wide average. Market spelling should match the mandi data source (for example, `Ludhiana APMC`).
 
 Net profit is calculated as **(yield per acre × market price) − total cost per acre**. The whole-field figure multiplies the per-acre profit by the entered acreage. Fertilizer and pesticide whole-farm totals are calculated as **per-acre rate × farm acres**.
 
